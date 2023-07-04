@@ -6,7 +6,7 @@
 
 # Input:
 # array = [3, 5, -4, 8, 11, 1, -1, 6]
-# targetSum = 10
+# target_sum = 10
 # Output: [-1, 11]
 
 # solution one with set
@@ -30,6 +30,8 @@ def two_number_sum(array, target_sum):
     array.sort()
     left = 0
     right = len(array) - 1
+    # Maybe it should be right > left to avoid summing numbers on the same index
+    # (e.g. at index 4 there is 5 with 5 + 5 = 10 == target_sum)
     while right >= left:
         sum = array[left] + array[right]
         if sum == target_sum:
