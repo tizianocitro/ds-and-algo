@@ -12,7 +12,7 @@
 # solution one with set
 # Complexity
 # O(n) time - where n is the number of elements in the array
-# O(n) space - because we create a set wchihc in the worst case will contain n numbers where n is the number of elements in the array
+# O(n) space - because we create a set which in the worst case will contain n numbers where n is the number of elements in the array
 def two_number_sum(array, target_sum):
     complements = set()
     for n in array:
