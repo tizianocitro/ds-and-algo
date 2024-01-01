@@ -11,18 +11,18 @@
 # solution one
 def insertion_sort(array):
     for i in range(1, len(array)):
-        for j in range(i - 1, -1, -1):
-            if array[j] <= array[i]:
+        for j in range(i, 0, -1):
+            if array[j] >= array[j - 1]:
                 break
-            array[j], array[i] = array[i], array[j]
-            i -= 1
+            array[j], array[j - 1] = array[j - 1], array[j]
     return array
 
 # solution two
 def insertion_sort(array):
     for i in range(1, len(array)):
-        for j in range(i, 0, -1):
-            if array[j] >= array[j - 1]:
+        for j in range(i - 1, -1, -1):
+            if array[j] <= array[i]:
                 break
-            array[j], array[j - 1] = array[j - 1], array[j]
+            array[j], array[i] = array[i], array[j]
+            i -= 1
     return array
