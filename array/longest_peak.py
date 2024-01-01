@@ -8,7 +8,9 @@
 # Input: array = [1, 2, 3, 3, 4, 0, 10, 6, 5, -1, -3, 2, 3]
 # Output: 6 because we have [0, 10, 6, 5, -1, -3]
 
-# Complexity: O(n) time | O(1) space
+# Complexity:
+# O(n) time - where n is the length of the input array
+# O(1) space
 
 # solution one
 def longestPeak(array):
