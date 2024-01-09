@@ -1,3 +1,5 @@
+# !difficulty: very hard
+
 # Merge Sort works by cutting an array in two halves, respectively sorting those two halves by performing some special logic,
 # and then merging the two newly-sorted halves into one sorted array.
 # The respective sorting of the two halves is done by reapplying the Merge Sort algorithm / logic on each half until single-element halves are obtained;

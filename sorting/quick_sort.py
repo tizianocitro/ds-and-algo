@@ -1,3 +1,5 @@
+# !difficulty: hard
+
 # Quick Sort works by picking a "pivot" number from an array,
 # positioning every other number in the array in sorted order with respect to the pivot
 # (all smaller numbers to the pivot's left; all bigger numbers to the pivot's right),

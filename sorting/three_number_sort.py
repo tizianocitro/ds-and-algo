@@ -1,4 +1,5 @@
-# Problem
+# !difficulty: medium
+
 # You're given an array of integers and another array of three distinct integers.
 # The first array is guaranteed to only contain integers that are in the second array, and the second array represents a desired order for the integers in the first array.
 # For example, a second array of [x, y, z] represents a desired order of [x, x, ..., x, y, y, ..., y, z, z, ..., z] in the first array.

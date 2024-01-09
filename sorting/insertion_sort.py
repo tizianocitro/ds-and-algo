@@ -1,3 +1,5 @@
+# !difficulty: easy
+
 # Divide the input array into two subarrays in place.
 # The first subarray should be sorted at all times and should start with a length of 1, while the second subarray should be unsorted.
 # Iterate through the unsorted subarray, inserting all of its elements into the sorted subarray in the correct position by swapping them into place.

@@ -1,3 +1,5 @@
+# !difficulty: easy
+
 # Divide the input array into two subarrays in place. 
 # The first subarray should be sorted at all times and should start with a length of 0, while the second subarray should be unsorted.
 # Find the smallest (or largest) element in the unsorted subarray and insert it into the sorted subarray with a swap. 
