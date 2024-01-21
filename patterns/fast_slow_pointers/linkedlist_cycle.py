@@ -14,12 +14,12 @@ class Node:
         self.val = value
         self.next = next
 
-    class Solution:
-        def hasCycle(self, head):
-            slow, fast = head, head
-            while fast is not None and fast.next is not None:
-                slow = slow.next
-                fast = fast.next.next
-                if slow == fast:
-                    return True
-            return False
+class Solution:
+    def hasCycle(self, head):
+        slow, fast = head, head
+        while fast is not None and fast.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return True
+        return False
