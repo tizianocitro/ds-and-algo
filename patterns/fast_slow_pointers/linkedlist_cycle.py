@@ -10,7 +10,7 @@ Given the head of a Singly LinkedList, write a function to determine if the Link
 # As concluded in the README.md, once the slow pointer enters the cycle, the fast pointer will meet the slow pointer in the same loop.
 # O(1) space
 class Node:
-    def __init__(self, value, next=None):
+    def __init__(self, value, next = None):
         self.val = value
         self.next = next
 
