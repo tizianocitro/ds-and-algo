@@ -38,6 +38,11 @@ this means that we can never reach 1 because we are stuck in a loop.
 # O(logn) time - because the findSquareSum function iterates through the digits of the number,
 # and the number of digits in the worst case is log(n) (where n is the value of the input number)
 # O(1) space
+class Node:
+    def __init__(self, value, next = None):
+        self.val = value
+        self.next = next
+
 class Solution:
     def find(self, num):
         slow, fast = num, num
@@ -68,6 +73,11 @@ class Solution:
 # Complexity:
 # O(dk) time - where d is the number of digits in the number and k is the number of ierations
 # O(d) space - where d is the number of digits in the number
+class Node:
+    def __init__(self, value, next = None):
+        self.val = value
+        self.next = next
+
 class Solution:
     def find(self, num):
         results = set([num])

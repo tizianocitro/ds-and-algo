@@ -21,6 +21,11 @@ Output: false
 # 2. Once we have the middle, we reverse the second half;
 # 3. Then, we compare the first half with the reversed second half to see if the LinkedList represents a palindrome;
 # 4. Finally, we reverse the second half of the LinkedList again to revert and bring the LinkedList back to its original form.
+class Node:
+    def __init__(self, value, next = None):
+        self.val = value
+        self.next = next
+
 class Solution:
     def isPalindrome(self, head):
         if head is None or head.next is None:
@@ -54,7 +59,6 @@ class Solution:
             return True
 
         return False
-
 
     def reverse(self, head):
         prev = None
