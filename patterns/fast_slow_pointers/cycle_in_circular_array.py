@@ -27,7 +27,7 @@ Explanation: the array does not have any cycle
 
 # solution one
 # Complexity:
-# O(n^2) time - where n is the number of elements in the array.
+# O(n^2) time - where n is the number of elements in the array
 # This is due to the fact that we are iterating all elements and trying to find a cycle for each element.
 # O(1) space
 class Solution:
@@ -75,7 +75,49 @@ class Solution:
 '''
 In solution one, we don’t keep a record of all the numbers that have been evaluated for cycles.
 We know that all such numbers will not produce a cycle for any other instance as well.
-If we can remember all the numbers that have been visited, our algorithm will improve to O(n) time as,
-then, each number will be evaluated for cycles only once.
+If we can remember all the numbers that have been visited, our algorithm will improve to O(n) time as, then, each number will be evaluated for cycles only once.
 We can keep track of this by creating a separate array, however, in this case, the space complexity of our algorithm will increase to O(n).
 '''
+# Complexity:
+# O(n) time - where n is the number of elements in the array
+# O(n) space - where n is the number of elements in the array
+class Solution:
+    def loopExists(self, arr):
+        for i in range(len(arr)):
+            # if we are moving forward or not
+            direction = arr[i] >= 0
+            slow, fast = i, i
+            seen = set([i])
+
+        while True:
+            # move one step for slow pointer
+            slow = self.findNextIndex(arr, slow, direction)
+            # move one step for fast pointer
+            fast = self.findNextIndex(arr, fast, direction)
+            if fast != -1:
+                # move another step for fast pointer
+                fast = self.findNextIndex(arr, fast, direction)
+            if slow in seen or fast in seen or slow == -1 or fast == -1:
+                break
+            seen.add(slow)
+            seen.add(fast)
+
+        if slow != -1 and (slow in seen or fast in seen):
+            return True
+
+        return False
+
+    def findNextIndex(self, arr, currentIndex, direction):
+        elDirection = arr[currentIndex] >= 0
+
+        # change in direction, return -1
+        if elDirection != direction:
+            return -1
+
+        nextIndex = (currentIndex + arr[currentIndex]) % len(arr)
+
+        # one element cycle, return -1
+        if nextIndex == currentIndex:
+            return -1
+
+        return nextIndex
