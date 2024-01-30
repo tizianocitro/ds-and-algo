@@ -1,6 +1,6 @@
 # !difficulty: medium
 
-'''
+''' Problem:
 Given the head of a Singly LinkedList, write a method to check if the LinkedList is a palindrome or not.
 
 Your algorithm should use constant space and the input LinkedList should be in the original form once the algorithm is finished.
