@@ -23,16 +23,16 @@ A `brute-force algorithm` will calculate the sum of every 5-element subarray of 
 
 ```python
 class Solution:
-    def findAverages(self, K, arr):
+    def findAverages(self, k, arr):
         result = []
-        for i in range(len(arr) - K + 1):
+        for i in range(len(arr) - k + 1):
             # find sum of next K elements
             sum = 0.0
-            for j in range(i, i + K):
+            for j in range(i, i + k):
                 sum += arr[j]
 
             # calculate and append average
-            result.append(sum / K)
+            result.append(sum / k)
 
         return result
 ```
@@ -55,21 +55,23 @@ Here is the algorithm for the Sliding Window approach:
 
 ```python
 class Solution:
-    def findAverages(self, K, arr):
+    def findAverages(self, k, arr):
         result = []
         windowSum, windowStart, windowEnd = 0.0, 0, 0
 
         while windowEnd != len(arr) - 1:
             # add the next element
             windowSum += arr[windowEnd]
+
             # slide the window, no need to slide if we've not hit the required window size of k
-            if windowEnd >= K - 1:
+            if windowEnd >= k - 1:
                 # calculate and append the average
-                result.append(windowSum / K)
+                result.append(windowSum / k)
                 # subtract the element going out
                 windowSum -= arr[windowStart]
                 # slide the window ahead
                 windowStart += 1
+
             # move the window end to expand the window
             windowEnd += 1
 
