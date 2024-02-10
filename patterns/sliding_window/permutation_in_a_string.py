@@ -60,7 +60,6 @@ class Solution:
 
         return False
 
-
 # solution two
 # Complexity:
 # O(n + m) time - where n is the number of characters in the string and m is the number of characters in the pattern
