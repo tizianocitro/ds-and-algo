@@ -47,8 +47,8 @@ class Solution:
                     matched += 1
         
             # Have we found an anagram?
-            # should be equivalent to
-            # if matched == k:
+            # should be equivalent to len(char_frequiences) because we are checking if the entry for a character in the dictionary is 0
+            # and it is 0 when the string has the same number of instances of that characters as the pattern
             if matched == len(char_frequiences):
                 result_indices.append(start)
             
