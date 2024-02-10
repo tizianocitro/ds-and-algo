@@ -29,6 +29,7 @@ Explanation: The three anagrams of the pattern in the given string are "bca", "c
 # Complexity:
 # O(n + m) time - where n is the number of characters in the string and m is the number of characters in the pattern
 # O(m) space - where m is the number of characters in the pattern
+# In the worst case, we also need O(n) space for the result_indices list, this will happen when the pattern has only one character and the string contains only that character.
 class Solution:
     def findStringAnagrams(self, str1, pattern):
         result_indices = []
