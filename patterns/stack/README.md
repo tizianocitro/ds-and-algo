@@ -1,6 +1,6 @@
 # Stack
 
-Stack is a linear data structure that follows a particular order of operation. This order can either be **Last In First Out (LIFO)** or **First In Last Out (FILO)**.
+A stack is a linear data structure that follows a particular order of operation. This order can either be **Last In First Out (LIFO)** or **First In Last Out (FILO)**.
 
 Imagine you have a pile of books that you plan to read. You keep adding books to the top of the pile. When you're ready to start reading, you take a book from the top of the pile. The last book you added to the pile is the first one you read. That's LIFO - the principle that stack data structures operate on.
 
@@ -15,7 +15,7 @@ Before diving into technicalities, let's familiarize ourselves with stacks in ou
 3. **Web Browser History**: Every time you visit a new webpage, it's added to the top of your history stack. When you hit the back button, you're "popping" pages off the top of the stack.
 4. **Undo Function in Software Applications**: The undo function in software applications uses a stack to remember actions. The most recent action is on top and will be the first one undone.
 
-Looking at these examples, it's clear that stacks are not just a theoretical concept, but a practical one that we use unconsciously in our daily lives.
+Looking at these examples, it's clear that stacks are not just a theoretical concept but a practical one that we use unconsciously in our daily lives.
 
 ## The LIFO Principle
 
@@ -46,7 +46,7 @@ In programming, the push operation usually involves a few steps. First, we check
 
 ### Pop Operation
 
-The `pop` operation, which removes the topmost element of the stack. It's like removing the top dish from our pile in the sink.
+The `pop` operation removes the stack's topmost element. It's like removing the top dish from our pile in the sink.
 
 In code, popping an element from a stack is usually done in two parts. First, we check if there are any elements to remove (we'll look at this more when we discuss stack underflow). If there are elements, we remove the top one.
 
@@ -54,7 +54,7 @@ In code, popping an element from a stack is usually done in two parts. First, we
 
 The `peek` or `top` operation allows us to look at the top element of the stack without removing it. It's like looking at the top dish in our sink pile without touching it.
 
-This operation can be handy when you need to know what's on top of your stack but you don't want to change anything. It's a read-only operation.
+This operation can be handy when you need to know what's on top of your stack, but you don't want to change anything. It's a read-only operation.
 
 ### IsEmpty Operation
 The `isEmpty` operation checks if the stack is empty. This operation is essential for preventing errors when popping an element from an empty stack (known as stack underflow).
@@ -94,7 +94,7 @@ class Stack:
 ```
 
 ## Dealing with Stack Overflow and Underflow
-Stack overflow and underflow are two situations you might encounter when working with stacks. Stack overflow occurs when you try to push an element onto a stack that's already full, while stack underflow occurs when you try to pop an element from an empty stack.
+Stack overflow and underflow are two situations you might encounter when working with stacks. A stack overflow occurs when you try to push an element onto a stack that's already full, while stack underflow occurs when you try to pop an element from an empty stack.
 
 Handling these situations properly is crucial to preventing runtime errors and ensuring that your code runs smoothly. Depending on the programming language and the specific implementation of the stack, you might have different ways of handling these situations. It's always a good idea to check for stack overflow and underflow before performing push and pop operations.
 
@@ -102,7 +102,7 @@ Handling these situations properly is crucial to preventing runtime errors and e
 
 In this section, we'll cover how to implement a stack data structure using different data structures: array and linked list.
 
-### Stack Implementation Using an Array
+### Stack Implementation Using an Array
 
 Implementing a stack using an array is one of the most straightforward ways.
 
@@ -198,7 +198,7 @@ class Stack:
         return self.top is None
 ```
 
-The key difference here is that we're using a Node class to create nodes and linking them together to form a stack. This method allows our stack to be dynamically sized, avoiding the overflow issue we saw with arrays.
+The key difference here is that we're using a Node class to create nodes and link them together to form a stack. This method allows our stack to be dynamically sized, avoiding the overflow issue we saw with arrays.
 
 ### Stack Implementation in DIfferent Languages
 
