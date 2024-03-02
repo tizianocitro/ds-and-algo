@@ -100,7 +100,7 @@ Handling these situations properly is crucial to preventing runtime errors and e
 
 ## Implementing Stack Data Structure
 
-In this section, we'll cover how to implement a stack data structure using different data structures: array nd linked list.
+In this section, we'll cover how to implement a stack data structure using different data structures: array and linked list.
 
 ### Stack Implementation Using an Array
 
