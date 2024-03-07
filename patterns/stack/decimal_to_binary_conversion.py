@@ -42,14 +42,14 @@ Here is a detailed walkthrough of the solution:
 # O(logn) time - where n is the input number
 # O(logn) space - where n is the input number
 class Solution: 
-    def decimalToBinary(self, num):
-        # stack to hold binary digits
-        stack = []
-        # continue the loop until num becomes 0
-        while num > 0:
-            # push the remainder of num divided by 2 onto the stack
-            stack.append(num % 2)
-            # update num by integer division (floor division) by 2
-            num //= 2
-        # equivalent to iterating over the stack and using pop()
-        return ''.join(str(i) for i in reversed(stack)) 
+   def decimalToBinary(self, num):
+      # stack to hold binary digits
+      stack = []
+      # continue the loop until num becomes 0
+      while num > 0:
+         # push the remainder of num divided by 2 onto the stack
+         stack.append(num % 2)
+         # update num by integer division (floor division) by 2
+         num //= 2
+      # equivalent to iterating over the stack and using pop()
+      return ''.join(str(i) for i in reversed(stack)) 
