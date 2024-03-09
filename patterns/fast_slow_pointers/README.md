@@ -25,6 +25,6 @@ All other distances between the fast and slow pointers will reduce to one of the
 
 This concludes that the two pointers will definitely meet if the LinkedList has a cycle. A similar analysis can be done where the slow pointer moves first. Here is a visual representation of the algorithm:
 
-![Visual representation of the algorithm](https://github.com/tizianocitro/ds-and-algo/blob/main/assets/fast_slow_pointers.png "Visual representation of the algorithm")
+![Visual representation of the algorithm](/assets/fast_slow_pointers.png "Visual representation of the algorithm")
 
 Look at the `LinkedList Cycle` problem for the solution.

@@ -13,7 +13,7 @@ Given that the input array is sorted, an efficient way would be to start with on
 
 Here is the visual representation of this algorithm:
 
-![Visual representation of the algorithm](https://github.com/tizianocitro/ds-and-algo/blob/main/assets/two_pointers.png "Visual representation of the algorithm")
+![Visual representation of the algorithm](/assets/two_pointers.png "Visual representation of the algorithm")
 
 The time complexity of the above algorithm will be `O(N)`.
 

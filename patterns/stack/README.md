@@ -36,7 +36,7 @@ This section aims to describe the main operations involved in manipulating a sta
 
 Stack operations and their time complexities:
 
-![Stack operations and their time complexities](https://github.com/tizianocitro/ds-and-algo/blob/main/assets/stack_operations.png "Stack operations and their time complexities")
+![Stack operations and their time complexities](/assets/stack_operations.png "Stack operations and their time complexities")
 
 ### Push Operation
 

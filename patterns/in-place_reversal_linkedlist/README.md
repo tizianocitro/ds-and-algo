@@ -4,4 +4,4 @@ In a lot of problems, we are asked to reverse the links between a set of nodes o
 
 In-place Reversal of a LinkedList pattern describes an efficient way to solve the above problem. Below an example of the application of the pattern:
 
-![Visual representation of in-place Reversal of a LinkedList](https://github.com/tizianocitro/ds-and-algo/blob/main/assets/reverse_linkedlist.png "Visual representation of in-place Reversal of a LinkedList")
+![Visual representation of in-place Reversal of a LinkedList](/assets/reverse_linkedlist.png "Visual representation of in-place Reversal of a LinkedList")

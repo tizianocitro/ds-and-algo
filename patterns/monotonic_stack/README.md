@@ -37,3 +37,51 @@ One classic sign that a Monotonic Stack might be helpful is when the problem des
 
 ## Constructing Monotonic Stacks
 
+Understanding how to build Monotonic Stacks is key. We'll break down this process for each type.
+
+### Code Template for Monotonically Increasing Stack
+
+Here's a general structure of a Monotonically Increasing Stack in pseudo-code:
+
+```bash
+create an empty stack
+for each element in the array:
+    while stack is not empty AND top of stack is more than the current element:
+        pop the stack
+    push the current element to stack
+```
+
+This logic guarantees that for each element, all larger elements preceding it get popped, leaving the next smaller element (if it exists) at the top of the stack.
+
+### Code Template for Monotonically Decreasing Stack
+
+Similarly, here's a template for a Monotonically Decreasing Stack:
+
+```bash
+create an empty stack
+create an empty stack
+for each element in the array:
+    while stack is not empty AND top of stack is less than the current element:
+        pop the stack
+    push the current element to stack
+```
+
+This structure ensures that for each element, all smaller elements preceding it get popped, leaving the next larger element (if it exists) at the top of the stack.
+
+### Explanation of the Code Templates
+
+Both these templates work in a similar fashion. They loop through each element in the array, and for each one, they pop out the elements from the stack that are smaller (for increasing stack) or larger (for decreasing stack) than the current element. This ensures the stack stays monotonically increasing or decreasing.
+
+## Understanding Time Complexity
+
+Grasping the time complexity of Monotonic Stacks is critical for efficiency. Let's break it down for both types.
+
+### Time Complexity for Monotonically Increasing Stack
+
+In a Monotonically Increasing Stack, each element from the input array is pushed and popped from the stack exactly once. Therefore, even though there is a loop inside a loop, no element is processed more than twice. Hence, the time complexity of building a Monotonically Increasing Stack is O(N), where N is the number of elements in the array.
+
+### Time Complexity for Monotonically Decreasing Stack
+
+The situation is similar for a Monotonically Decreasing Stack. Each element is processed only twice, once for the push operation and once for the pop operation. As a result, the time complexity remains linear - O(N), with N being the size of the array.
+
+To summarize, although the construction of Monotonic Stacks might look complex at first glance, they are impressively efficient. Each element in the input array is handled only twice (one push and one pop), making the overall time complexity linear.
