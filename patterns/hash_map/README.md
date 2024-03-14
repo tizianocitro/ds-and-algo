@@ -303,3 +303,86 @@ Here is how different languages implement Hash Tables:
 | Java | java.util.Map Or java.util.HashMap |
 | C++ | std::unordered_map |
 
+## Issues with Hash Tables
+
+Our Hash Table implementation is naive. By that, we mean that the code doesn't cater to some frequently occurring issues. Let's see what these issues really are.
+
+### Collisions
+
+A collision in a Hash Table occurs when an insert operation tries to insert an item at a table slot already occupied by another item. How can this happen? Let's find out.
+
+
+#### Collision example
+
+Reconsider our earlier example of the Hash Table for the public library book information storage. Assume, for the sake of simplicity, the Hash Table has the `max_length` equal to `10`. Further, you need to insert the following book records in it:
+
+![Book records example](/assets/hashmap_1.png "Book records example")
+
+Here is the hash value calculation for the first four entries:
+
+![Key for the book records example](/assets/hashmap_2.png "Key for the book records example")
+
+So the hash table array would look something like this:
+
+![Hash map array](/assets/hashmap_3.png "Hash map array")
+
+Now, what happens if we try inserting the record with the `Key` `1021`? The hash value for `1021` is the same as occupied by the book with the `Key` `1011` because `1021 % 10 = 1`. In this scenario, we say that a collision has occurred.
+
+Collisions occur frequently in hash tables when two different keys hash to the same bucket. Without proper collision handling, lookup performance degrades from `O(1)` to `O(n)` linear search time. Managing collisions is crucial to efficient hash table implementation.
+
+### Overflows
+
+Overflow in a hash table occurs when the number of elements inserted exceeds the fixed capacity allocated for the underlying bucket array. For example, if you already have inserted information of ten books in the earlier discussed hash table, inserting the eleventh one will cause an overflow.
+
+One important point to note here is that as the underlying bucket array starts filling towards its maximum capacity, the expectation of collisions starts increasing. Thereby the overall efficiency of hash table operations starts decreasing.
+
+An ideal hash table implementation must resolve collisions effectively and must act to avoid any overflow early. In the next section, we will explore different strategies for handling collisions.
+
+### Resolving Collisions
+
+Remember that our naive hash table implementation directly overwrote existing records when collisions occurred. This is inaccurate as it loses data on insertion. This section describes how we can avoid such data losses with the help of collision resolution techniques.
+
+Based on how we resolve the collisions, the collision resolution techniques are classified into two types:
+
+- Open addressing/Closed hashing
+- Chaining/Open hashing
+
+#### Open Addressing (Closed Hashing):
+
+Open addressing techniques resolve hash collisions by probing for the next available slot within the hash table itself. This approach is called open addressing since it opens up the entire hash table for finding an empty slot during insertion.
+
+It is also known as closed hashing because the insertion is restricted to existing slots within the table without using any external data structures.
+
+Depending on how you jump or probe to find the next empty slot, the closed hashing is further divided into multiple types. Here are the main collision resolution schemes used in the open-addressing scheme:
+
+1. **Linear probing**: Linear probing is the simplest way to handle collisions by linearly searching consecutive slots for the next empty location.
+2. **Quadratic probing**: When a collision occurs, the quadratic probing attempts to find an alternative empty slot for the key by using a quadratic function to probe the successive possible positions.
+3. **Double hashing**: It uses two hash functions to determine the next probing location in case of a successive collision.
+4. **Random probing**: Random probing uses a pseudo-random number generator (PRNG) to compute the step size or increment value for probes in case of collisions.
+
+Implementation of insertion, search, and deletion operations is slightly different for each type of the operations.
+
+#### Separate Chaining (Open Hashing):
+
+Selecting the right closed hashing technique for resolving collisions can be tough. You need to keep the pros and cons of different strategies in mind and then have to make a decision.
+
+Separate chaining offers a rather simpler chaining mechanism to resolve collisions. Each slot in the hash table points to a separate data structure, such as a linked-list. This linked-list or chain stores multiple elements that share the same hash index. When a collision occurs, new elements are simply appended to the existing list in the corresponding slot.
+
+Separate chaining is an "open hashing" technique because the hash table is "open" to accommodate multiple elements within a single bucket (usually using a chain) to handle collisions. Here is the generalized conceptual diagram for the chaining method:
+
+![Open hashing](/assets/open_hashing.png "Open hashing")
+
+*Example*: Recall our earlier example of the hash table for storing books' information. Assume you have a hash table (with open hashing) of size `11` and have the following situation:
+
+![Open hashing example](/assets/open_hashing_1.png "Open hashing example")
+
+Now, here is what the hash table would look like after inserting a new book record `(1724, "Compilers Theory", "E4 Shelf")`:
+
+![Open hashing example](/assets/open_hashing_2.png "Open hashing example")
+
+The key `1724` hashes on `08`. Therefore, the item with this key is appended at the end of the chain, pointed by table slot `08`.
+
+Let's now move on to implementing the hash table with separate chaining.
+
+### A complete implementation
+
