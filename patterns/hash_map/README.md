@@ -532,4 +532,46 @@ Rehashing involves applying a new hash function(s) to all the entries in a hash 
 
 After rehashing, the new distribution of entries across the larger table leads to fewer collisions and improved performance. We perform rehashing periodically when the load-factor exceeds thresholds or based on metrics like average chain length.
 
-#### Resizing and Rehashing Process
+##### Resizing and Rehashing Process
+
+1. Determine that the load-factor has exceeded the threshold (e.g., alpha > `0.5`) and that the hash table needs resizing.
+2. Create a new hash table with a larger capacity (e.g., double the size of the original table).
+3. Iterate through the existing hash table and rehash each element into the new one using the primary hash function with the new table size.
+4. After rehashing all the elements, the new hash table replaces the old one, and the old table is deallocated from memory.
+
+### Selecting a Hash Function
+
+Throughout the hashing portion, we discussed only one or two hash functions. The question arises, how to develop a new hash function? Is there any technique to make your customized hash function? Let's find out the answers.
+
+But first, we must know how to distinguish between a good and a bad hash function. Here are some ways to explain the characteristics of a good hash function in simple terms. Here are some characteristics that every good hash function must follow:
+
+1. **Uniformity and Distribution**: The hash function should spread out keys evenly across all slots in the hash table. It should not cram keys into only a few slots. Each slot should have an equal chance of being hashed to, like spreading items randomly across shelves. This ensures a balanced distribution without crowded clusters in some places.
+2. **Efficiency**: It should require minimal processing power and time to compute. Complex and slow hash functions defeat the purpose of fast lookup. The faster, the better.
+3. **Collision Reduction**: Different keys should end up getting mapped to different slots as much as possible. If multiple keys keep colliding in the same slot, the hash table operations will deteriorate time efficiency over time.
+
+### Hash function design techniques
+
+Here are a few of the commonly used techniques for creating good hash functions.
+
+#### Division method
+
+The division method is one of the simplest and most widely used techniques to compute a hash code. It involves calculating the remainder obtained by dividing the key by the size of the hash table (the number of buckets). The remainder is taken as the hash code. Mathematically, the division method is expressed as: `hash_key = key % table_size`.
+
+The division method is simple to implement and computationally efficient. However, it may not be the best choice if the key distribution is not uniform or the table size is not a prime number, which may lead to clustering.
+
+#### Folding method
+
+The folding method involves dividing the key into smaller parts (subkeys) and then combining them to calculate the hash code. It is particularly useful when dealing with large keys or when the key does not evenly fit into the hash table size.
+
+There are several ways to perform folding:
+
+- **Digit sum**: split the key into groups of digits, and their sum is taken as the hash code. For example, you can hash the key `541236` using digit sum folding into a hash table of size `5` as `hash_key = (5 + 4 + 1 + 2 + 3 + 6) % 5 = 21 % 5 = 1`.
+- **Reduction**: split the key in folds and use a reduction using any associative operation like XOR to reduce folds to a single value. Now, pass this single value through the simple division hash function to generate the final hash value.
+
+For example, suppose you want a 12-digit key `593048892357`  to be hashed onto a table of size `11113`. In folding with reduction, you will split it into 3 parts of 4 digits each: `5930`, `4889`, `2357`. Then, you XOR the parts and pass through an ordinary hash function as `hash_key = (5930 XOR 4889 XOR 2357) % table_size = 7041`.
+
+We can also add the parts: `hash_key = (5930 + 4889 + 2357) % table_size = 13176 % 11113 = 2063`.
+
+The folding method can handle large keys efficiently and provides better key distribution than the division method. It finds common applications where the keys are lengthy or need to be split into subkeys for other purposes.
+
+#### Mid-square Method
