@@ -384,5 +384,152 @@ The key `1724` hashes on `08`. Therefore, the item with this key is appended at 
 
 Let's now move on to implementing the hash table with separate chaining.
 
-### A complete implementation
+### A complete implementation using Separate Chaining (Open Hashing)
 
+Insertion in a hash table with separate chaining is simple. For an item with hash key `x`, you need to just append the item at the list/chain linked to the `x` slot of the table. Similarly, deletion operation is also more straightforward. You don't need to keep any deletion signs or marks. You can directly delete the item's node from the chain linked to the relevant hash table slot.
+
+Here is a complete implementation of the hash table we developed for books storage:
+
+```python
+class Record:
+    def __init__(self, key, title, placement_info):
+        self.Key = key
+        self.Title = title
+        self.PlacementInfo = placement_info
+
+class HashTable:
+    def __init__(self, size):
+        self.buckets = [[] for _ in range(size)]
+        self.max_length = size
+
+    def H(self, key):
+        return key % self.max_length
+
+    def Insert(self, item):
+        index = self.H(item.Key)
+
+        # Check if the key already exists in the chain
+        for record in self.buckets[index]:
+            if record.Key == item.Key:
+                return False  # Key already exists in the chain, cannot insert
+
+        self.buckets[index].append(item)
+        return True
+
+    def Search(self, key, returnedItem):
+        index = self.H(key)
+
+        # Search for the key in the chain
+        for record in self.buckets[index]:
+            if record.Key == key:
+                returnedItem.Key = record.Key
+                returnedItem.Title = record.Title
+                returnedItem.PlacementInfo = record.PlacementInfo
+                return True  # Return True to indicate the record was found
+
+        return False  # Record not found
+
+    def Delete(self, key):
+        index = self.H(key)
+
+        # Search for the key in the chain and delete if found
+        for i, record in enumerate(self.buckets[index]):
+            if record.Key == key:
+                del self.buckets[index][i]
+                return True
+
+        return False  # The key is not found in the chain
+
+    def ShowTable(self):
+        print("Index\tValue (Key, Title, PlacementInfo)")
+        for i in range(self.max_length):
+            print(i, end="\t")
+            if not self.buckets[i]:
+                print("[EMPTY BUCKET]")
+            else:
+                for j, record in enumerate(self.buckets[i]):
+                    if j > 0:
+                        print("-->", end=" ")
+                    print("({0}, {1}, {2})".format(record.Key, record.Title, record.PlacementInfo), end=" ")
+                print()
+```
+
+Use the hash table:
+
+```python
+
+def main():
+    tableSize = 11
+    hashTable = HashTable(tableSize)
+
+    # Insert initial book information
+    hashTable.Insert(Record(1701, "Internet of Things", "G1 Shelf"))
+    hashTable.Insert(Record(1712, "Statistical Analysis", "G1 Shelf"))
+    hashTable.Insert(Record(1718, "Grid Computing", "H2 Shelf"))
+    hashTable.Insert(Record(1735, "UML Modeling", "G1 Shelf"))
+    hashTable.Insert(Record(1752, "Professional Practices", "G2 Shelf"))
+
+    # Display the hash table after initial insertions
+    print("\nHash Table after initial insertions:")
+    hashTable.ShowTable()
+
+    # Insert the following record
+    hashTable.Insert(Record(1725, "Deep Learning with Python", "C3 Shelf"))
+
+    # Display the hash table after the last insertion
+    print("\nHash Table inserting Book Key 1725:")
+    hashTable.ShowTable()
+
+    # Delete two records
+    hashTable.Delete(1701)
+    hashTable.Delete(1718)
+
+    # Display the hash table after deletions
+    print("\nHash Table after deleting 1701 and 1718:")
+    hashTable.ShowTable()
+
+if __name__ == "__main__":
+    main()
+```
+
+### Perks of Separate Chaining
+
+Separate chaining has the following perks over the closed hashing techniques:
+
+1. **Dynamic Memory Usage**: Insertions append new nodes at the chains. Unlike closed hashing, where we just put deletion mark, deleting items causes their nodes to completely removed from the chain. Thereby, the table with separate chaining can grow and shrink as per number of elements.
+2. **Simple Implementation**: Implementing separate chaining is straightforward, using linked lists to manage collisions, making the code easy to understand and maintain.
+3. **Graceful Handling of Duplicates**: This technique gracefully handles duplicate keys, allowing multiple records with the same key to be stored and retrieved accurately.
+
+### Downsides of Separate Chaining
+
+Separate chaining has the following downsides:
+
+1. **Increased Memory Overhead**: Separate chaining requires additional memory to store pointers or references to linked lists for each bucket, leading to increased memory overhead, especially when dealing with small data sets.
+2. **Cache Inefficiency**: As separate chaining involves linked lists, cache performance can be negatively impacted due to non-contiguous memory access when traversing the lists, reducing overall efficiency.
+3. **External Fragmentation**: The dynamic allocation of memory for linked lists can lead to external fragmentation, which may affect the performance of memory management in the system.
+4. **Worst-Case Time Complexity**: In the worst-case scenario, when multiple keys are hashed to the same bucket and form long linked lists, the time complexity for search, insert, and delete operations can degrade to O(n), making it less suitable for time-critical applications.
+5. **Memory Allocation Overhead**: Dynamic memory allocation for each new element can add overhead and might lead to performance issues when the system is under high memory pressure.
+
+### Handling Overflows
+
+Closed hashing techniques like linear probing experience overflow when entries fill up the fixed hash table slots. Overflow can loosely indicate that the table has exceeded the suitable load factor.
+
+Ideally, for closed hashing, the load-factor `alpha = n/m` should not cross `0.5`, where `n` is the number of entries and `m` is table size. Otherwise, the hash table experiences a significant increase in collisions, problems in searching, and degrading performance and integrity of the table operations.
+
+Open Hashing encounters overflow when chain lengths become too long, thereby increasing the search time. The load-factor `alpha` can go up to `0.8` or `0.9` before performance is affected.
+
+Resizing the hash table can help alleviate the overflow issues. Let's explore what resizing is and when it is suitable to do.
+
+#### Resizing
+
+Resizing is increasing the size of the hash table to avoid overflows and maintain certain load-factor. Once the load-factor of the hash table increases a certain threshold (e.g., `0.5` for Closed Hashing and `0.9` for Open Hashing), resizing gets activated to increase the size of the table.
+
+When resizing, do the old values remain in the same place in the new table? The answer is "No." As resizing changes the table size, the values must be rehashed to maintain the correctness of the data structure.
+
+#### Rehashing
+
+Rehashing involves applying a new hash function(s) to all the entries in a hash table to make the table more evenly distributed. In context to resizing, it means recalculating hashes (according to the new table size) of all the entries in the old table and re-inserting those in the new table. Rehashing takes `O(n)` time for `n` entries.
+
+After rehashing, the new distribution of entries across the larger table leads to fewer collisions and improved performance. We perform rehashing periodically when the load-factor exceeds thresholds or based on metrics like average chain length.
+
+#### Resizing and Rehashing Process
