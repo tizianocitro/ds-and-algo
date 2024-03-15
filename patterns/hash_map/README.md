@@ -575,3 +575,19 @@ We can also add the parts: `hash_key = (5930 + 4889 + 2357) % table_size = 13176
 The folding method can handle large keys efficiently and provides better key distribution than the division method. It finds common applications where the keys are lengthy or need to be split into subkeys for other purposes.
 
 #### Mid-square Method
+
+The mid-square method involves squaring the key, extracting the middle part, and then using it as the hash code. This technique is particularly useful when keys are short and do not have patterns in the lower or upper digits. The steps for calculating mid-square are as follows:
+
+1. Square the key.
+2. Extract the K middle digits of the square.
+3. Apply simple division on these middle digits to get the final hash.
+
+For example, consider the key `3729`, and we want to hash it into a hash table of size `10`.
+
+1. Square the key: `3729 * 3729 = 13935241`.
+2. Extract the middle digits to get the hash value: `953`.
+3. Calculate the hash index: `H(953) = 935 % 10 = 5`.
+
+Therefore, the key `3729` is hashed into the hash table at index `5`.
+
+The mid-square method is easy to implement and works well when the key values are uniformly distributed, providing a good spread of hash codes. However, it may not be suitable for all types of keys, especially those with patterns or significant leading/trailing zeros.
