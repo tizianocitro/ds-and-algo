@@ -1,4 +1,4 @@
-# !difficulty: easy
+# !difficulty: easy, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/6398a0a974c44bdc88129966
 
 '''Problem:
 Given a binary tree and a number S, find if the tree has a path from root-to-leaf such that the sum of all the node values of that path equals S.
