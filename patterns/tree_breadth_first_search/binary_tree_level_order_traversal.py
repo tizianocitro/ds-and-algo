@@ -1,4 +1,4 @@
-# !difficulty: easy
+# !difficulty: easy, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/6394fcd622692a384ae7dbdd
 
 '''Problem:
 Given a binary tree, populate an array to represent its level-by-level traversal.
