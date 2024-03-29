@@ -351,3 +351,138 @@ class Graph:
         count = sum(len(neighbors) for neighbors in self.adjacency_list.values())
         return count // 2 # Divide by 2 because otherwise we would count every edhe two times.
 ```
+
+## Graph Traversal
+
+A graph consists of vertices (nodes) connected by edges (lines). Graph traversal involves visiting all the graph nodes following a specific strategy or order. During traversal, each node is typically marked as visited to avoid revisiting the same node multiple times and to prevent infinite loops in cyclic graphs.
+
+There are two common graph traversal algorithms: **Depth-First Search (DFS)** and **Breadth-First Search (BFS)**.
+
+## Depth-First Search (DFS)
+
+Depth-First Search (DFS) is a graph traversal algorithm that explores all the nodes in a graph by systematically visiting as far as possible along each branch before backtracking. It operates on both directed and undirected graphs and can be implemented using recursion or an explicit stack data structure.
+
+DFS starts from a selected source node (or a starting point) and explores as deeply as possible along each branch before backtracking. The algorithm visits nodes in a depth ward motion until it reaches a leaf node with no unexplored neighbors. At that point, it backtracks and explores other unexplored branches.
+
+DFS can be used for various applications, such as finding connected components, detecting cycles in the graph, topological sorting, and solving problems like maze exploration or finding paths between nodes.
+
+It's essential to be cautious about infinite loops when traversing graphs that may have cycles. To avoid this, the algorithm must keep track of visited nodes and avoid revisiting nodes that have already been explored.
+
+Overall, DFS is a powerful graph traversal algorithm that can efficiently explore the entire graph and is widely used in many graph-related problems.
+
+Here's a step-by-step explanation of the DFS algorithm:
+
+1. **Initialization**:
+
+    - Choose a starting node as the source node.
+    - Create a data structure to keep track of visited nodes (e.g., an array or a hash set) and mark the source node as visited.
+
+2. **Visit the Current Node**: process the current node (e.g., print its value or perform any other operation you need to do).
+
+3. **Recursive Approach (Using Recursion)**: ror each unvisited neighbor of the current node recursively call the DFS function with the neighbor as the new current node.
+Mark the neighbor as visited.
+
+4. **Stack-Based Approach (Using an Explicit Stack)**:
+
+    - Push the starting node onto the stack.
+    - While the stack is not empty:
+        - Pop a node from the stack (current node).
+        - Process the current node (e.g., print its value or perform any other operation you need to do).
+        - For each unvisited neighbor of the current node:
+            - Push the unvisited neighbor onto the stack.
+            - Mark the neighbor as visited.
+
+5. **Backtracking**: if there are no more unvisited neighbors for the current node, backtrack by returning from the recursive function (if recursion) or popping nodes from the stack until a node with unvisited neighbors is found (if using an explicit stack).
+
+6. **Termination**: the DFS algorithm terminates when all nodes reachable from the source node have been visited. This means that all connected components of the graph have been explored.
+
+### Example of DFS on Graph
+
+Consider the following graph:
+
+![DFS on Graph](/assets/dfs_graph.png "DFS on Graph")
+
+Starting from node `A`, let's perform DFS on this graph:
+
+1. Start at node A (the source node).
+2. Mark node A as visited and process it: A (visited).
+3. Explore an unvisited neighbor of A. Let's say we choose B.
+4. Mark node B as visited and process it: A -> B (visited).
+5. From node B, explore an unvisited neighbor. We choose D.
+6. Mark node D as visited and process it: A -> B -> D (visited).
+7. Node D has no unvisited neighbors, so we backtrack to node B.
+8. Node B has another unvisited neighbor, E. We explore E.
+9. Mark node E as visited and process it: A -> B -> D -> E (visited).
+10. From node E, explore an unvisited neighbor. We choose F.
+11. Mark node F as visited and process it: A -> B -> D -> E -> F (visited).
+12. Node F has no unvisited neighbors, so we backtrack to node E.
+13. Node E has no more unvisited neighbors, so we backtrack to node B.
+14. Node B has no more unvisited neighbors, so we backtrack to node A.
+15. Node A has one more unvisited neighbor, C. We explore C.
+16. Mark node C as visited and process it: A -> B -> D -> E -> F -> C (visited).
+17. Node C has no unvisited neighbors, so we backtrack to node A.
+18. Node A has no more unvisited neighbors, and we have visited all reachable nodes.
+
+The DFS traversal order for this graph starting from node `A` is: `A -> B -> D -> E -> F -> C`.
+
+*Note that the choice of the starting node can affect the order of traversal for the graph. Also, in a disconnected graph, you would need to start DFS from each unvisited node to traverse all components*.
+
+### Implementation of DFS
+
+In this example implementation, we assume that the graph is represented as an adjacency list.
+
+```python
+class Graph:
+    def __init__(self, V):
+        self.vertices = V
+        self.adjList = [[] for _ in range(V)]
+
+    def addEdge(self, u, v):
+        self.adjList[u].append(v)
+        self.adjList[v].append(u)  # For an undirected graph
+
+    def DFS(self, start):
+        visited = [False] * self.vertices
+        stack = []
+
+        stack.append(start)
+        visited[start] = True
+
+        while stack:
+            curr = stack.pop()
+            print(curr)
+
+            # Without the reversed() it traverses the right branches before the left ones
+            # for neighbor in reversed(self.adjList[curr]):
+            for neighbor in self.adjList[curr]:
+                if not visited[neighbor]:
+                    stack.append(neighbor)
+                    visited[neighbor] = True
+```
+
+### Complexity Analysis of DFS
+
+The time and space complexity of Depth-First Search (DFS) depend on the size and structure of the graph being traversed. Let's analyze the complexity of DFS:
+
+#### Time Complexity
+
+In the worst case, DFS once visits all nodes and edges in the graph. For a graph with `V` vertices (nodes) and `E` edges, the time complexity of DFS is `O(V + E)`.
+
+The time complexity can be further broken down as follows:
+
+- Visiting a node (marking it as visited and processing it) takes `O(1)` time.
+- Exploring all neighbors of a node takes `O(d)` time, where `d` is the average degree of nodes in the graph. In the worst case, `d` can be as high as `V - 1` (complete graph).
+- So, the time complexity can be approximated as `O(V)` for exploring all neighbors of one node.
+
+In summary, the overall time complexity of DFS is `O(V + E)`.
+
+#### Space Complexity
+
+The space complexity of DFS is determined by the space needed to store information about the nodes during the traversal. The primary sources of space usage are the *recursion stack* (if using recursion) or the *explicit stack data structure* (if using an iterative approach).
+
+In the worst case, the maximum depth of the recursion stack (or the maximum number of nodes stored in the stack) is the height of the deepest branch of the graph. For a graph with a single connected component, this height can be `O(V - 1)` (when all nodes are connected in a straight line).
+
+The space complexity of the recursion stack in the worst case is `O(V)`. Similarly, if an explicit stack is used, its space complexity would also be `O(V)` in the worst case.
+
+In summary, the overall space complexity of DFS is `O(V)` due to the recursion stack or the explicit stack.
+## Breadth-First Search (BFS)
