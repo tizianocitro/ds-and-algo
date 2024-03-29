@@ -179,3 +179,175 @@ Here is an example of adjacency list for a directed graph with `4` vertices `(A,
 ![Adjacency List for Directed Graphs](/assets/adjacency_list_directed.png "Adjacency List for Directed Graphs")
 
 From vertex `A` there is an edge to vertex `B` and `C` in the graph. So in the adjacency list, there are two nodes from node `A`. From vertex `B` there is no edge coming out so the adjacency list contains no further node from node `B`.
+
+## Graph as an Abstract Data Type (ADT)
+
+An `Abstract Data Type (ADT)` is a theoretical concept that defines a set of operations and their behavior without specifying the internal representation of the data or the algorithms used to implement those operations. It provides a high-level description of the data and the functions that can be performed on it.
+
+Here are some of the operations can be performed on graphs:
+
+- Adding a new vertex
+- Removing a vertex
+- Adding an edge between two vertices
+- Removing an edge between two vertices
+- Getting a list of all the vertices
+- Checking if two graph nodes are adjacent to each other or not
+- Getting count of the total vertices in the graph
+- Getting count of the total edges in the graph
+- Getting a list of the graph edges
+- Getting neighbors of a graph vertex
+
+There are a few other ADT operations involving graph searching and traversal.
+
+```python
+class Graph:
+    def __init__(self):
+        self.adjacencyList = {}
+
+    def add_vertex(self, vertex):
+        pass # Add a new vertex to the graph.
+
+    def remove_vertex(self, vertex):
+        pass # Remove a vertex from the graph.
+
+    def add_edge(self, vertex1, vertex2):
+        pass # Add an edge between two vertices.
+
+    def remove_edge(self, vertex1, vertex2):
+        pass # Remove an edge between two vertices.
+
+    def get_vertices(self):
+        return [] # Get a list of all vertices.
+
+    def is_adjacent(self, vertex1, vertex2):
+        return False # Check if two vertices are adjacent.
+
+    def get_vertex_count(self):
+        return 0 # Get the total number of vertices.
+
+    def get_edge_count(self):
+        return 0 # Get the total number of edges.
+
+    def get_edges(self):
+        return [] # Get a list of all edges.
+
+    def get_neighbors(self, vertex):
+        return [] # Get a list of neighbors of a given vertex.
+```
+
+### Implementing the ADT operations
+
+Let's understanding how some the operations are implemented.
+
+#### Adding a New Vertex
+
+The function `add_vertex(vertex)` is a common operation in graph theory, where it adds a new vertex (also called a node or point) to a graph data structure. The vertex is a fundamental unit of a graph and represents an entity or an element. Adding a vertex expands the graph and creates potential connections (edges) between this new vertex and existing vertices.
+
+In an adjacency list, each vertex is associated with a list of its adjacent vertices. We are using a dictionary or map for implementing the adjacency list. Thereby, we are able to store node key and value(s) associated with it.
+
+In this implementation, we assume that a graph doesn't have any extra satellite data or values associated with it. Therefore, we will add an empty vector or list as a value attribute for the new graph node or vertex.
+
+Adding a new vertex involves the following two main steps:
+
+- Check if vertex already exists, using predefined map or dictionary search methods.
+- If not, add it by inserting a new key-value pair. Keep value of the new inserted vertex as empty list.
+
+Here is a generalized pseudocode:
+
+```text
+Graph is represented as:
+
+adjacencyList (map/dictionary):
+  key: vertex 
+  value: list of adjacent vertices
+
+Function addVertex(vertex)
+
+  if vertex does not exist in adjacencyList
+
+    add new key-value pair:
+      key: vertex
+      value: empty list     
+    end if
+
+end Function
+```
+
+```python
+def add_vertex(self, vertex):
+  if vertex not in self.adjacency_list:
+    self.adjacency_list[vertex] = []
+```
+
+#### Adding an Edge between Two Vertices
+
+Pseudocode:
+
+```text
+Function addEdge(vertex1, vertex2):
+
+  insert vertex2 into adjacencyList[vertex1]
+  insert vertex1 into adjacencyList[vertex2]
+
+end Function
+```
+
+To implement the `add_edge()` function, we need to add an edge between `vertex1` and `vertex2` in the graph. Here is the implementation:
+
+```python
+def add_edge(self, vertex1, vertex2):
+    self.adjacency_list[vertex1].append(vertex2)
+    self.adjacency_list[vertex2].append(vertex1)
+```
+
+### A Complete Graph ADT Implementation
+
+```python
+class Graph:
+    def __init__(self):
+        self.adjacency_list = {}
+
+    def add_vertex(self, vertex):
+        if vertex not in self.adjacency_list:
+            self.adjacency_list[vertex] = []
+
+    def remove_vertex(self, vertex):
+        if vertex not in self.adjacency_list:
+            return 
+        self.adjacency_list.pop(vertex)
+        for neighbors in self.adjacency_list.values():
+            if vertex in neighbors:
+                neighbors.remove(vertex)
+
+    def add_edge(self, vertex1, vertex2):
+        self.adjacency_list[vertex1].append(vertex2)
+        self.adjacency_list[vertex2].append(vertex1)
+
+    def remove_edge(self, vertex1, vertex2):
+        self.adjacency_list[vertex1].remove(vertex2)
+        self.adjacency_list[vertex2].remove(vertex1)
+        
+    def get_vertices(self):
+        return list(self.adjacency_list.keys())
+        
+    def get_edges(self):
+        edges = []
+        for vertex, neighbors in self.adjacency_list.items():
+            for neighbor in neighbors:
+                if vertex < neighbor:
+                    edges.append((vertex, neighbor))
+        return edges
+    
+    def get_neighbors(self, vertex):
+        return self.adjacency_list[vertex]
+
+    def is_adjacent(self, vertex1, vertex2):
+        return vertex2 in self.adjacency_list[vertex1]
+    
+    def get_vertex_count(self):
+        return len(self.adjacency_list)
+    
+    def get_edge_count(self):
+        count = sum(len(neighbors) for neighbors in self.adjacency_list.values())
+        return count // 2 # Divide by 2 because otherwise we would count every edhe two times.
+```
