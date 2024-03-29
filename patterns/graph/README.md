@@ -124,3 +124,58 @@ There are several types of graphs, each with its specific characteristics. Here 
     ![Strongly Connected Graph](/assets/strongly_connected_graph.png "Strongly Connected Graph")
 
 These are some of the common types of graphs in data structures. Each type has its significance and use cases depending on the problem at hand. Understanding different types of graphs is crucial for effectively applying graph algorithms and solving graph-related problems.
+
+## Graph Representations
+
+We primarily represent graphs using two ways:
+
+1. Adjacency matrix
+2. Adjacency list
+
+### Adjacency Matrix
+
+An adjacency matrix is a common way to represent a graph as a matrix. It is a square matrix where the rows and columns represent the vertices of the graph, and the entries (elements) of the matrix indicate whether there is an edge between the corresponding vertices.
+
+In an undirected graph, the edges have no direction, meaning they can be traversed in both directions between two vertices. On the other hand, in a directed graph, the edges have a direction, indicating a one-way relationship between two vertices.
+
+As there are two major types of graphs directed graph and undirected graph. Let's see how the adjacency matrix works for both types of graphs.
+
+### Adjacency Matrix for Undirected Graphs
+
+In an undirected graph with `N` vertices, the adjacency matrix `A` will be an `N x N` matrix. For an undirected edge between vertices `i` and `j`, the corresponding entries in the matrix (`A[i][j]` and `A[j][i]`) will have a value of `1`, indicating the presence of an edge. If there is no edge between vertices `i` and `j`, the matrix entries will have the value of `0`.
+
+Considering an undirected graph with `4` vertices `(A, B, C, D)` and `4` edges `(A-B, B-C, C-D, D-A)`, the adjacency matric for the graph will be:
+
+![Adjacency Matrix for Undirected Graphs](/assets/adjacency_matrix_undirected.png "Adjacency Matrix for Undirected Graphs")
+
+### Adjacency Matrix for Directed Graphs
+
+In a directed graph with `N` vertices, the adjacency matrix `A` will also be an `N x N` matrix. For a directed edge from vertex `i` to vertex `j`, the corresponding entry in the matrix (`A[i][j]`) will have the value of `1`, indicating the presence of an edge from `i` to `j`. If there is no edge from vertex `i` to vertex `j`, the matrix entry (`A[i][j]`) will have the value of `0`.
+
+Considering of a directed graph with `4` vertices `(A, B, C, D)` and `5` directed edges `(A->B, A->C, C->D, D->B, D->C)`, the adjacency matric for the graph will be:
+
+![Adjacency Matrix for Directed Graphs](/assets/adjacency_matrix_directed.png "Adjacency Matrix for Directed Graphs")
+
+The above figure explains the adjacency matrix of the directed graph in such a way that there is an edge between vertices `A-C` and `A-B` so `1` is placed there.
+
+### Adjacency List
+
+An adjacency list is a common way to represent the connections between vertices in a graph. It is used in both directed and undirected graphs, but the way edges are stored and described differs slightly between the two types. In an adjacency list, each vertex is associated with a list of its neighboring vertices directly connected to it.
+
+### Adjacency List for Undirected Graphs
+
+In an undirected graph, the edges between vertices have no direction. If vertex `A` is connected to vertex `B`, then vertex `B` is also connected to vertex `A`. As a result, the adjacency list for an undirected graph is symmetric. Here is an example of an adjacency list for an undirected graph with `4` vertices `(A, B, C, D)` and `4` edges `(A-B, B-C, C-D, D-A)`.
+
+![Adjacency List for Undirected Graphs](/assets/adjacency_list_undirected.png "Adjacency List for Undirected Graphs")
+
+From vertex `A` there is an edge to vertex `B` and `C` in the graph. So in the adjacency list, there are two nodes from node `A`.
+
+### Adjacency List for Directed Graphs
+
+In a directed graph, the edges between vertices have a direction. If vertex `X` is connected to vertex `Y`, it does not necessarily mean that vertex `Y` is connected to vertex `X`. As a result, the adjacency list for a directed graph is not symmetric.
+
+Here is an example of adjacency list for a directed graph with `4` vertices `(A, B, C, D)` and `4` directed edges `(A->B, A->C, C->D, D->B)`:
+
+![Adjacency List for Directed Graphs](/assets/adjacency_list_directed.png "Adjacency List for Directed Graphs")
+
+From vertex `A` there is an edge to vertex `B` and `C` in the graph. So in the adjacency list, there are two nodes from node `A`. From vertex `B` there is no edge coming out so the adjacency list contains no further node from node `B`.
