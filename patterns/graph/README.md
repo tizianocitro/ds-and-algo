@@ -485,4 +485,102 @@ In the worst case, the maximum depth of the recursion stack (or the maximum numb
 The space complexity of the recursion stack in the worst case is `O(V)`. Similarly, if an explicit stack is used, its space complexity would also be `O(V)` in the worst case.
 
 In summary, the overall space complexity of DFS is `O(V)` due to the recursion stack or the explicit stack.
+
 ## Breadth-First Search (BFS)
+
+Breadth-First Search (BFS) is a graph traversal algorithm that explores a graph's vertices (nodes) level by level. It starts from a selected source node and moves outward to visit all the nodes at the same distance from the source before moving on to nodes at the following distance level.
+
+BFS is particularly useful for finding the shortest path in unweighted graphs and for systematically exploring graphs.
+
+BFS is generally efficient for searching and traversal when the graph is not too dense. For sparse graphs, where `E` is much smaller than `V^2`, the time complexity becomes almost linear, making BFS a reasonable choice for many practical applications.
+
+BFS guarantees it visits nodes according to their distance from the source node. It is an efficient algorithm to find the shortest path in unweighted graphs. Additionally, BFS can find connected components, detect cycles, and solve graph-related problems. However, it may consume more memory than DFS, especially in graphs with a significant or infinite branching factor.
+
+Here is a complete description of the Breadth-First Search algorithm:
+
+1. **Usage of a Queue**: BFS uses a queue to keep track of the nodes to be visited. The queue follows the First-In-First-Out (FIFO) principle, where the first node inserted in the queue will be the first one to be removed (dequeue).
+
+2. **Initialization**:
+
+    - Start by selecting a source node to begin the traversal.
+    - Create an empty queue to hold the nodes to be visited.
+    - Mark the source node as visited and enqueue it into the queue.
+
+3. **Traversal**: while the queue is not empty, continue the following steps:
+
+    - Dequeue a node from the front of the queue (let's call it the "current node").
+    - Process the current node (print it, perform some operation, etc.).
+    - Enqueue all the unvisited neighbors of the current node into the queue.
+    - Mark each enqueued neighbor as visited.
+
+4. **Termination**: the BFS algorithm continues until the queue becomes empty, meaning all reachable nodes from the source node have been visited.
+
+### Example of BFS on Graph
+
+Consider the following graph:
+
+![BFS on Graph](/assets/bfs_graph.png "BFS on Graph")
+
+Starting from the source node `A`, the BFS traversal would be as follows:
+
+1. Start with A (the source node) and enqueue it. *Queue*: [A]
+2. Dequeue A and process it. Enqueue its neighbors B and C. *Queue*: [B, C]
+3. Dequeue B and process it. Enqueue its neighbors D and E. *Queue*: [C, D, E]
+4. Dequeue C and process it. Enqueue its neighbor F. *Queue*: [D, E, F]
+5. Dequeue D and process it. No unvisited neighbors to enqueue. *Queue*: [E, F]
+6. Dequeue E and process it. Enqueue its neighbor F. *Queue*: [F]
+7. Dequeue F and process it. No unvisited neighbors to enqueue. *Queue*: []
+
+The BFS traversal order is: `A -> B -> C -> D -> E -> F`.
+
+BFS guarantees that it visits nodes in the order of their distance from the source node.
+
+### Implementation of BFS
+
+BFS is an algorithm used for traversing or searching a graph or tree in a level-by-level manner.
+
+```python
+from collections import deque
+
+class Graph:
+    def __init__(self, V):
+        self.vertices = V
+        self.adjList = [[] for _ in range(V)]
+
+    def addEdge(self, u, v):
+        self.adjList[u].append(v)
+        self.adjList[v].append(u)  # For an undirected graph
+
+    def DFS(self, start):
+        visited = [False] * self.vertices
+        queue = deque()
+
+        queue.append(start)
+        visited[start] = True
+
+        while queue:
+            curr = queue.popleft()
+            print(curr)
+
+            for neighbor in self.adjList[curr]:
+                if not visited[neighbor]:
+                    queue.append(neighbor)
+                    visited[neighbor] = True
+```
+
+### Complexity Analysis of BFS
+
+The time and space complexity of Breadth-First Search (BFS) depends on the size of the graph and the way it is represented.
+
+#### Time Complexity
+
+- Visiting a vertex takes `O(1)` time as we dequeue it from the queue in constant time.
+- Exploring the neighbors of a vertex takes `O(1)` time per neighbor, as we have to traverse its adjacency list once.
+- In the worst case, we visit all the vertices at least once, which takes `O(V)` time. Additionally, for each vertex, we explore all its neighbors once, which takes `O(E)` time in total (sum of the sizes of all adjacency lists).
+- Hence, the overall time complexity of BFS is: `O(V + E)`.
+
+#### Space Complexity
+
+- The space required to store the graph using an adjacency list representation is `O(V + E)`, as we need to store each vertex and its corresponding edges.
+- The space required for the queue in BFS is `O(V)` in the worst case, as all the vertices can be in the queue at once.
+- Since the space occupied by the queue is dominant in the overall space complexity, the space complexity of BFS is: `O(V)`.
