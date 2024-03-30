@@ -1,4 +1,4 @@
-# !difficulty: easy
+# !difficulty: easy, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/651a80b8f0749a59d1e0228d
 
 '''Problem:
 Given an undirected graph, represented as a list of edges.
@@ -38,6 +38,8 @@ class Solution:
                 return True
 
             for neighbor in reversed(graph[current]):
+                # to avoid getting stuck in a loop, especially in cyclic graphs,
+                # we check if the node has been visited before
                 if neighbor not in visited:
                     stack.append(neighbor)
 
@@ -72,6 +74,8 @@ class Solution:
 
             # traverse neighbors
             for neighbor in graph[node]:
+                # to avoid getting stuck in a loop, especially in cyclic graphs,
+                # we check if the node has been visited before
                 if neighbor not in visited and dfs(neighbor):
                     # return true because the above if is true only if the dfs returns true,
                     # which means the path is found
