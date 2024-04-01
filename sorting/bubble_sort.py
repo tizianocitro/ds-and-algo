@@ -1,4 +1,4 @@
-# !difficulty: easy
+# !difficulty: easy, !from: https://www.algoexpert.io/questions/bubble-sort
 
 # Traverse the input array, swapping any two numbers that are out of order and keeping track of any swaps that you make.
 # Once you arrive at the end of the array, check if you have made any swaps;

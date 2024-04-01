@@ -1,4 +1,4 @@
-# !difficulty: easy
+# !difficulty: easy, !from: https://www.algoexpert.io/questions/selection-sort
 
 # Divide the input array into two subarrays in place. 
 # The first subarray should be sorted at all times and should start with a length of 0, while the second subarray should be unsorted.

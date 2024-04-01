@@ -1,4 +1,4 @@
-# !difficulty: very hard
+# !difficulty: very hard, !from: https://www.algoexpert.io/questions/merge-sort
 
 # Merge Sort works by cutting an array in two halves, respectively sorting those two halves by performing some special logic,
 # and then merging the two newly-sorted halves into one sorted array.

@@ -1,4 +1,4 @@
-# !difficulty: hard
+# !difficulty: hard, !from: https://www.algoexpert.io/questions/quick-sort
 
 # Quick Sort works by picking a "pivot" number from an array,
 # positioning every other number in the array in sorted order with respect to the pivot

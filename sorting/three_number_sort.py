@@ -1,4 +1,4 @@
-# !difficulty: medium
+# !difficulty: medium, !from: https://www.algoexpert.io/questions/three-number-sort
 
 # You're given an array of integers and another array of three distinct integers.
 # The first array is guaranteed to only contain integers that are in the second array, and the second array represents a desired order for the integers in the first array.

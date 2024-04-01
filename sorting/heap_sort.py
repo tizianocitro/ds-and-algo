@@ -1,4 +1,4 @@
-# !difficulty: hard
+# !difficulty: , !from: https://www.algoexpert.io/questions/heap-sort
 
 '''
 Write a function that takes in an array of integers and returns a sorted version of that
