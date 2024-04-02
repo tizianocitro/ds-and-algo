@@ -6,7 +6,7 @@ Each edge is illustrated as a pair of integers [u, v], signifying that there's a
 
 Given the number of nodes n, the edges, a starting node start, and a destination node end, your task is to ascertain if a path exists between the starting node and the destination node.
 
-Input: n = 4, edges = [[0,1],[1,2],[2,3]], start = 0, end = 3
+Input: n = 4, edges = [[0,1], [1,2], [2,3]], start = 0, end = 3
 Expected Output: true
 Justification: There's a path from node 0 -> 1 -> 2 -> 3.
 '''
