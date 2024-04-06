@@ -130,7 +130,7 @@ class Solution:
             if row < 0 or row >= len(matrix) or col < 0 or col >= len(matrix[0]):
                 continue
             if matrix[row][col] == 0 or visited[row][col]:
-                continue\
+                continue
 
             visited[row][col] = True
 
