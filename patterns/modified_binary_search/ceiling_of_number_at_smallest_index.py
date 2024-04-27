@@ -29,8 +29,12 @@ class Solution:
         while left <= right:
             middle = (left + right) // 2
             current = arr[middle]
-            
-            if current >= key:
+
+            if current > key:
+                right = middle - 1
+            elif current < key:
+                left = middle + 1
+            else:
                 # if the ceil is not set or if the new ceil
                 # is at a smaller index than the current ceil,
                 # which since the array is sorted,
@@ -38,7 +42,5 @@ class Solution:
                 if ceil == -1 or middle < ceil:
                     ceil = middle
                     right = middle - 1
-            else:
-                left = middle + 1
 
         return ceil
