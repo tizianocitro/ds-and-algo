@@ -1,7 +1,13 @@
 # !difficulty: medium, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/63a348bd7bde61668d15d011
 
 '''Problem:
+Given an array of k sorted Linked Lists, merge them into one sorted list.
 
+Input: L1=[2, 6, 8], L2=[3, 6, 7], L3=[1, 3, 4]
+Output: [1, 2, 3, 3, 4, 6, 6, 7, 8]
+
+Input: L1=[5, 8, 9], L2=[1, 7]
+Output: [1, 5, 7, 8, 9]
 '''
 
 # solution one
