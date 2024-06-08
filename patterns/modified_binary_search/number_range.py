@@ -61,7 +61,7 @@ class Solution:
 # O(1) space
 class Solution:
     def findRange(self, arr, key):
-        result = [- 1, -1]
+        result = [-1, -1]
 
         left, right = 0, len(arr) - 1
         while left <= right:
