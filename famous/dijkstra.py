@@ -101,7 +101,7 @@ def getNodeWithMinDistance(distances, visited):
 
 # solution two with heap
 # Complexity:
-# O((v + e)lognv) time - where v is the number of vertices and e is the number of edges
+# O((v + e)logv) time - where v is the number of vertices and e is the number of edges
 # O(v) because we visit all nodes and for each node we need O(logv) to get the node with min distance and ensure the heap remains heapified
 # O(e) because for each node, we vist all of each edges, so across all nodes we visit all edges
 # but for each edge we also need to update its value if the new distance is smaller,
