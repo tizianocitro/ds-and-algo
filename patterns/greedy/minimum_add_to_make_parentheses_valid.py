@@ -20,6 +20,20 @@ Output: 1
 Explanation: The string has three opening parentheses and three closing parentheses, with an additional opening parenthesis at the end. Adding one closing parenthesis at the end will balance it.
 '''
 
+'''Solution:
+To solve this problem, we track the balance of parentheses as we iterate through the string.
+We initialize two counters: one for the balance of parentheses and another for the count of additions needed.
+
+For each character in the string, if it's an opening parenthesis '(', we increase the balance.
+If it's a closing parenthesis ')', we decrease the balance.
+If the balance is negative at any point (which means there are more closing parentheses than opening ones),
+we increment the additions counter and reset the balance to zero.
+
+The total number of additions required is the sum of the additions counter and the absolute value of the final balance,
+ensuring that all unmatched opening parentheses are also accounted for.
+This approach efficiently computes the minimum number of parentheses to be added for the string to become valid.
+'''
+
 # solution one
 # Complexity:
 # O(n) time -  where n is the length of the input string
