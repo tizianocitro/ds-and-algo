@@ -77,3 +77,11 @@ The above algorithm’s time complexity is exponential `O(2^n)`, where `n` repre
 
 The space complexity is `O(n)`. This space will be used to store the recursion stack. Since the recursive algorithm works in a `depth-first fashion`, which means that we can’t have more than `n` recursive calls on the call stack at any time.
 
+## Overlapping Sub-problems
+
+Let’s visually draw the recursive calls of the previous brute-force solution to see if there are any overlapping sub-problems. As we can see, in each recursive call, profits and weights arrays remain constant, and only `capacity` and `current_index` change. For simplicity, let’s denote `capacity` with `c` and `current_index` with `i`:
+
+![Visual representation of overlapping sub-problems in the algorithm](/assets/01_knapsack_pattern_overlapping.png "Visual representation of overlapping sub-problems in the algorithm")
+
+We can clearly see that `c:4, i=3` has been called twice. Hence we have an overlapping sub-problems pattern. We can use `Memoization` to solve overlapping sub-problems efficiently.
+
