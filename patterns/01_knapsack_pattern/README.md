@@ -25,3 +25,28 @@ Let’s try to put various combinations of fruits in the knapsack, such that the
 4. Banana + Melon (total weight 5) => 10 profit
 
 This shows that `Banana + Melon` is the best combination as it gives us the maximum profit, and the total weight does not exceed the capacity.
+
+## Brute-force Solution
+
+A basic brute-force solution could be to try all combinations of the given items (as we did above), allowing us to choose the one with maximum profit and a weight that doesn’t exceed `C`. Take the example of four items (`A, B, C, and D`), as shown in the diagram below. To try all the combinations, our algorithm will look like:
+
+```python
+for each item 'i' 
+  create a new set which INCLUDES item 'i' if the total weight does not exceed the capacity, and recursively process the remaining capacity and items
+
+  create a new set WITHOUT item 'i', and recursively process the remaining items
+
+return the set from the above two sets with higher profit
+```
+
+Here is a visual representation of our algorithm:
+
+![Visual representation of the algorithm](/assets/01_knapsack_pattern.png "Visual representation of the algorithm")
+
+All `green boxes` have a total weight that is less than or equal to the capacity `7`, and all the `red ones` have a weight that is more than `7`. The best solution we have is with items `[B, D]` having a total profit of `22` and a total weight of `7`.
+
+### Time and Space Complexity
+
+The above algorithm’s time complexity is exponential `O(2^n)`, where `n` represents the total number of items. This can also be confirmed from the above recursion tree. As we can see, we will have a total of `31` recursive calls – calculated through `(2^n) + (2^n) - 1`, which is asymptotically equivalent to `O(2^n)`.
+
+The space complexity is `O(n)`. This space will be used to store the recursion stack. Since the recursive algorithm works in a `depth-first fashion`, which means that we can’t have more than `n` recursive calls on the call stack at any time.
