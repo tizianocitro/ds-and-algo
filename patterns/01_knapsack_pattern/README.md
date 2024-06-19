@@ -258,3 +258,85 @@ class Solution:
             print(str(weights[0]) + " ", end='')
         print()
 ```
+
+## Improvement of Bottom-up DP solution
+
+We can develop an algorithm that has `O(c)` space complexity because **we only need one previous row to find the optimal solution**.
+
+Here's the code for the improved version:
+
+```python
+class Solution:
+    def solveKnapsack(self, profits, weights, capacity):
+        # basic checks
+        n = len(profits)
+        if capacity <= 0 or n == 0 or len(weights) != n:
+            return 0
+
+        # we only need one previous row to find the optimal solution, overall we need '2' rows
+        # the above solution is similar to the previous solution, the only difference is that
+        # we use `i % 2` instead if `i` and `(i-1) % 2` instead if `i-1`
+        dp = [[0 for x in range(capacity + 1)] for y in range(2)]
+
+        # if we have only one weight, we will take it if it is not more than the capacity
+        for c in range(0, capacity + 1):
+            if weights[0] <= c:
+                dp[0][c] = dp[1][c] = profits[0]
+
+        # process all sub-arrays for all the capacities
+        for i in range(1, n):
+            for c in range(0, capacity + 1):
+                profit1, profit2 = 0, 0
+                # include the item, if it is not more than the capacity
+                if weights[i] <= c:
+                    profit1 = profits[i] + dp[(i - 1) % 2][c - weights[i]]
+                # exclude the item
+                profit2 = dp[(i - 1) % 2][c]
+                # take maximum
+                dp[i % 2][c] = max(profit1, profit2)
+
+        return dp[(n - 1) % 2][capacity]
+```
+
+The solution above is similar to the previous solution; the only difference is that we use `i % 2` instead of `i` and `(i - 1) % 2` instead of `i - 1`. This solution has a space complexity of `O(2c) = O(c)`, where `c` is the knapsack’s maximum capacity.
+
+This space optimization solution can also be implemented using a single array. It is a bit tricky, but *the intuition is to use the same array for the previous and the next iteration*.
+
+Having a closer look, we need two values from the previous iteration: `dp[c]` and `dp[c - weight[i]]`.
+
+Since our inner loop is iterating over `c:0-->capacity`, let’s see how this might affect our two required values:
+
+1. When we access `dp[c]`, it has not been overridden yet for the current iteration, so it should be fine.
+2. `dp[c - weight[i]]` might be overridden if `weight[i] > 0`. Therefore we can’t use this value for the current iteration.
+
+To solve the second case, we can change our inner loop to process in the reverse direction: `c:capacity-->0`. This will ensure that whenever we change a value in `dp[]`, we will not need it again in the current iteration.
+
+```python
+class Solution:
+    def solveKnapsack(self, profits, weights, capacity):
+        # basic checks
+        n = len(profits)
+        if capacity <= 0 or n == 0 or len(weights) != n:
+            return 0
+
+        dp = [0 for x in range(capacity + 1)]
+
+        # if we have only one weight, we will take it if it is not more than the capacity
+        for c in range(0, capacity+1):
+            if weights[0] <= c:
+                dp[c] = profits[0]
+
+        # process all sub-arrays for all the capacities
+        for i in range(1, n):
+            for c in range(capacity, -1, -1):
+                profit1, profit2 = 0, 0
+                # include the item, if it is not more than the capacity
+                if weights[i] <= c:
+                    profit1 = profits[i] + dp[c - weights[i]]
+                # exclude the item
+                profit2 = dp[c]
+                # take maximum
+                dp[c] = max(profit1, profit2)
+
+        return dp[capacity]
+```
