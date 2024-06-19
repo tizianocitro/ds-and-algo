@@ -135,3 +135,126 @@ Since our memoization array `dp[profits.length][capacity + 1]` stores the result
 
 The above algorithm will use `O(nc)` space for the memoization array. Other than that, we will use `O(n)` space for the recursion call-stack. So the total space complexity will be `O(nc + n)`, which is asymptotically equivalent to `O(nc)`.
 
+## Bottom-up Dynamic Programming
+
+Let’s try to populate our `dp[][]` array from the above solution by working in a `bottom-up fashion`. Essentially, we want to find the maximum profit for every sub-array and every possible capacity. This means that `dp[i][c]` will represent the maximum knapsack profit for capacity `c` calculated from the first `i` items.
+
+So, for each item at index `i (0 <= i < items.length)` and capacity `c (0 <= c <= capacity)`, we have two options:
+
+1. **Exclude the item at index `i`**. In this case, we will take whatever profit we get from the sub-array excluding this item => `dp[i - 1][c]`.
+2. **Include the item at index `i` if its weight is not more than the `capacity`**. In this case, we include its profit plus whatever profit we get from the remaining capacity and from remaining items => `profit[i] + dp[i - 1][c - weight[i]]`.
+
+Finally, our optimal solution will be maximum of the above two values: `dp[i][c] = max(dp[i-1][c], profit[i] + dp[i - 1][c - weight[i]])`.
+
+### Code
+
+```python
+class Solution:
+    def solveKnapsack(self, profits, weights, capacity):
+        # basic checks
+        n = len(profits)
+        if capacity <= 0 or n == 0 or len(weights) != n:
+            return 0
+
+        dp = [[0 for x in range(capacity+1)] for y in range(n)]
+
+        # populate the capacity = 0 columns, with '0' capacity we have '0' profit
+        for i in range(0, n):
+            dp[i][0] = 0
+
+        # if we have only one weight, we will take it if it is not more than the capacity
+        for c in range(0, capacity + 1):
+            if weights[0] <= c:
+                dp[0][c] = profits[0]
+
+        # process all sub-arrays for all the capacities
+        for i in range(1, n):
+            for c in range(1, capacity + 1):
+                profit1, profit2 = 0, 0
+                # include the item, if it is not more than the capacity
+                if weights[i] <= c:
+                    profit1 = profits[i] + dp[i - 1][c - weights[i]]
+                # exclude the item
+                profit2 = dp[i - 1][c]
+                # take maximum
+                dp[i][c] = max(profit1, profit2)
+
+        # maximum profit will be at the bottom-right corner.
+        return dp[n - 1][capacity]
+```
+
+### Time and Space complexity
+
+The above solution has the time and space complexity of `O(nc)`, where `n` represents total items, and `c` is the maximum capacity.
+
+### How can we find the selected items?
+
+As we know, the final profit is at the **bottom-right corner**. Therefore, we will start from there to find the items that will be going into the knapsack.
+
+As you remember, at every step, we had two options: include an item or skip it. If we skip an item, we take the profit from the remaining items (i.e., from the cell right above it); if we include the item, then we jump to the remaining profit to find more items.
+
+Let’s understand this from the above example:
+
+![Selected items](/assets/01_knapsack_pattern_find_items.png "Selected items")
+
+1. `22` did not come from the top cell (which is `17`); hence we must include the item at index `3` (which is item `D`).
+2. Subtract the profit of item `D` from `22` to get the remaining profit `6`. We then jump to profit `6` on the same row.
+3. `6` came from the top cell, so we jump to row `2`.
+4. Again, `6` came from the top cell, so we jump to row `1`.
+5. `6` is different from the top cell, so we must include this item (which is item `B`).
+6. Subtract the profit of `B` from `6` to get profit `0`. We then jump to profit `0` on the same row. As soon as we hit zero remaining profit, we can finish our item search.
+7. Thus, the items going into the knapsack are `{B, D}`.
+
+### Code With Selected Items
+
+```python
+class Solution:
+    def solveKnapsack(self, profits, weights, capacity):
+        # basic checks
+        n = len(profits)
+        if capacity <= 0 or n == 0 or len(weights) != n:
+            return 0
+
+        dp = [[0 for x in range(capacity+1)] for y in range(n)]
+
+        # populate the capacity = 0 columns, with '0' capacity we have '0' profit
+        for i in range(0, n):
+            dp[i][0] = 0
+
+        # if we have only one weight, we will take it if it is not more than the capacity
+        for c in range(0, capacity + 1):
+            if weights[0] <= c:
+                dp[0][c] = profits[0]
+
+        # process all sub-arrays for all the capacities
+        for i in range(1, n):
+            for c in range(1, capacity + 1):
+                profit1, profit2 = 0, 0
+                # include the item, if it is not more than the capacity
+                if weights[i] <= c:
+                    profit1 = profits[i] + dp[i - 1][c - weights[i]]
+                # exclude the item
+                profit2 = dp[i - 1][c]
+                # take maximum
+                dp[i][c] = max(profit1, profit2)
+
+        self.print_selected_elements(dp, weights, profits, capacity)
+
+        # maximum profit will be at the bottom-right corner
+        return dp[n - 1][capacity]
+
+    def print_selected_elements(self, dp, weights, profits, capacity):
+        print("Selected weights are: ", end='')
+        n = len(weights)
+        # start from the bottom-right corner
+        total_profit = dp[n - 1][capacity]
+        for i in range(n - 1, 0, -1):
+            if total_profit != dp[i - 1][capacity]:
+                print(str(weights[i]) + " ", end='')
+                capacity -= weights[i]
+                total_profit -= profits[i]
+
+        if total_profit != 0:
+            print(str(weights[0]) + " ", end='')
+        print()
+```
