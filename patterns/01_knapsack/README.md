@@ -135,6 +135,52 @@ Since our memoization array `dp[profits.length][capacity + 1]` stores the result
 
 The above algorithm will use `O(nc)` space for the memoization array. Other than that, we will use `O(n)` space for the recursion call-stack. So the total space complexity will be `O(nc + n)`, which is asymptotically equivalent to `O(nc)`.
 
+### How can we find the selected items?
+
+Here's the modified code to get the selected items:
+
+```python
+class Solution:
+    def solveKnapsack(self, profits, weights, capacity):
+        # create a two dimensional array for Memoization, each element
+        # is initialized to '-1' and [] to keep track also of the items
+        dp = [[(-1, []) for x in range(capacity + 1)] for y in range(len(profits))]
+
+        return self.knapsack_recursive(dp, profits, weights, capacity, 0)
+
+    def knapsack_recursive(self, dp, profits, weights, capacity, current_index):
+        # base checks
+        if capacity <= 0 or current_index >= len(profits):
+            return 0, []
+
+        # if we have already solved a similar problem, return the result from memory,
+        # it happens if the profit is not set to '-1' in dp
+        if dp[current_index][capacity][0] != -1:
+            return dp[current_index][capacity]
+
+        # recursive call after choosing the element at the current_index
+        # if the weight of the element at current_index exceeds the capacity, we
+        # shouldn't process this
+        profit1, items1 = 0, []
+        if weights[current_index] <= capacity:
+            profit1, items1 = self.knapsack_recursive(
+                dp, profits, weights, capacity - weights[current_index], current_index + 1)
+            profit1 += profits[current_index]
+            items1 += [current_index]
+
+        # recursive call after excluding the element at the current_index
+        profit2, items2 = self.knapsack_recursive(
+            dp, profits, weights, capacity, current_index + 1)
+
+        # add the problem to the solved ones
+        if profit1 > profit2:
+            dp[current_index][capacity] = (profit1, items1)
+        else:
+            dp[current_index][capacity] = (profit2, items2)
+
+        return dp[current_index][capacity]
+```
+
 ## Bottom-up Dynamic Programming
 
 Let’s try to populate our `dp[][]` array from the above solution by working in a `bottom-up fashion`. Essentially, we want to find the maximum profit for every sub-array and every possible capacity. This means that `dp[i][c]` will represent the maximum knapsack profit for capacity `c` calculated from the first `i` items.
@@ -215,7 +261,7 @@ class Solution:
         if capacity <= 0 or n == 0 or len(weights) != n:
             return 0
 
-        dp = [[0 for x in range(capacity+1)] for y in range(n)]
+        dp = [[0 for x in range(capacity + 1)] for y in range(n)]
 
         # populate the capacity = 0 columns, with '0' capacity we have '0' profit
         for i in range(0, n):
@@ -322,7 +368,7 @@ class Solution:
         dp = [0 for x in range(capacity + 1)]
 
         # if we have only one weight, we will take it if it is not more than the capacity
-        for c in range(0, capacity+1):
+        for c in range(0, capacity + 1):
             if weights[0] <= c:
                 dp[c] = profits[0]
 
