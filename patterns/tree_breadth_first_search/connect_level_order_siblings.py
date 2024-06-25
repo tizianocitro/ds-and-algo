@@ -19,17 +19,17 @@ from collections import deque
 
 # level order traversal using 'next' pointer in nodes
 def print_level_order(root):
-    nextLevelRoot = root
-    while nextLevelRoot:
-        current = nextLevelRoot
-        nextLevelRoot = None
+    next_level_root = root
+    while next_level_root:
+        current = next_level_root
+        next_level_root = None
         while current:
             print(str(current.val) + " ", end='')
-            if not nextLevelRoot:
+            if not next_level_root:
                 if current.left:
-                    nextLevelRoot = current.left
+                    next_level_root = current.left
                 elif current.right:
-                    nextLevelRoot = current.right
+                    next_level_root = current.right
             current = current.next
     print()
 
