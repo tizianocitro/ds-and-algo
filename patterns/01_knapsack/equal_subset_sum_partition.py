@@ -158,8 +158,7 @@ class Solution:
         dp = [[False for _ in range(half_s + 1)] for _ in range(2)]
 
         # populate the s=0 columns, as we can always for '0' sum with an empty set
-        for i in range(n):
-            dp[0][0] = dp[1][0] = True
+        dp[0][0] = dp[1][0] = True
 
         # with only one number, we can form a subset only
         # when the required sum is equal to its value
@@ -181,3 +180,41 @@ class Solution:
 
         # the bottom-right corner will have our answer
         return dp[(n - 1) % 2][half_s]
+
+# solution five using bottom-up dp optimized version of solution four
+# Complexity:
+# O(ns) time - where n represents the total number of elements in the input array
+# and s is the total sum of all the numbers
+# O(s) space - this space will be used to store the dp array
+class Solution:
+    def canPartition(self, num):
+        s = sum(num)
+        # if 's' is a an odd number, we can't have two subsets with same total
+        if s % 2 != 0:
+            return False
+
+        n = len(num)
+        # we are trying to find a subset of given numbers that has a total sum of 's/2'.
+        half_s = int(s / 2)
+        # this solution uses a simple array to store the previous result
+        dp = [False for _ in range(half_s + 1)]
+
+        # populate the s=0 columns, as we can always for '0' sum with an empty set
+        dp[0] = True
+
+        # with only one number, we can form a subset only
+        # when the required sum is equal to its value
+        for j in range(1, half_s + 1):
+            dp[j] = num[0] == j
+
+        # process all subsets for all sums
+        for i in range(1, n):
+            for j in range(half_s, -1, -1):
+                if not dp[j] and num[i] <= j:
+                    # if dp[j] == True, this means we can get the sum 'j' without num[i], so we 
+                    # can move on to the next number else we can include num[i] and see if we 
+                    # can find a subset to get the remaining sum
+                    dp[j] = dp[j - num[i]]
+
+        # the bottom-right corner will have our answer
+        return dp[half_s]
