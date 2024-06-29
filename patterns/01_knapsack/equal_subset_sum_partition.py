@@ -17,7 +17,7 @@ Output: False
 Explanation: The given set cannot be partitioned into two subsets with equal sum.
 '''
 
-# solution one using top-down dp
+# solution one using top-down dp (brute-force)
 # Complexity:
 # O(2^n) time - where n represents the total number of elements in the input array
 # O(n) space - this space will be used to store the recursion stack (dfs-fashion)

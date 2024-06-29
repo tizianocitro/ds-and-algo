@@ -19,7 +19,7 @@ Explanation: We can partition the given set into two subsets where minimum absol
 between the sum of numbers is '92'. Here are the two subsets: {1, 3, 4} & {100}.
 '''
 
-# solution one using top-down dp
+# solution one using top-down dp (brute-force)
 # Complexity:
 # O(2^n) time - where n represents the total number of elements in the input array
 # O(n) space - this space will be used to store the recursion stack (dfs-fashion)
