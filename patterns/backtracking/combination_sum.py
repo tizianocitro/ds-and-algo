@@ -83,9 +83,11 @@ class Solution:
 
 # solution two
 # Complexity:
-# O(2^n * t/m) time - where n is the number of candidates
+# O(2^n * logn) time - where n is the number of candidates
 # The 2^n is because for each candidate, we have two choices, either to include it in the combination or not.
-# O(n * t/m) space - where n is the number of candidates
+# The logn is because we are using the list slicing operation to create a copy of the current combination.
+# O(nlogn) space - where n is the number of candidates,
+# the logn is because each combination that can contain logn nodes in case of a balanced binary tree.
 class Solution:
     def combinationSum(self, candidates, target):
         # store the final result
