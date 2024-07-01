@@ -71,6 +71,11 @@ class Solution:
         # if the number at current_Index exceeds the sum,
         # we shouldn't process the number so sum1 remains to 0
         sum1 = 0
+
+        # this if can be removed and the code will still work thanks to the s < 0 check
+        # because when we call it, then s will be < 0, so the check s < 0 will be true
+        # and 0 will be returned with sum1 remaining 0:
+        # sum1 = self.recursiveCountSubsets(num, s - num[current_index], current_index + 1, dp)
         if num[current_index] <= s:
             sum1 = self.recursiveCountSubsets(
                 num, s - num[current_index], current_index + 1, dp)
