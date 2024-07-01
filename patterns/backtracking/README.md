@@ -1,6 +1,6 @@
 # Backtracking
 
-Backtracking is an algorithmic technique that uses the brute-force approach to solve a problem.
+Backtracking is an algorithmic technique that uses the **brute-force approach** to solve a problem.
 
 > Brute-force approach states that for any problem, we should try out all possible solutions and pick up those solutions that satisfy the problem constraints.
 
