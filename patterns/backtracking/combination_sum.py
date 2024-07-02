@@ -44,6 +44,7 @@ In the end, we can see that the valid solutions are: [3, 3, 3] and [4, 5].
 # O(t/m) space - where t is the target value and m is the minimum value among the candidates
 # Ignoring the space needed for the output array, the space complexity would be O(t/m) because at any time, we can pile up to t/m recursive calls of the backtrack function,
 # this will happen when we keep on adding the smallest element to the combination. As a result, the space overhead of the recursion is O(t/m).
+# If we consider the result array, the space complexity would be O(n^t/m * t/m), where t/m is the average length of each combination.
 class Solution:
     def combinationSum(self, candidates, target):
         # store the final result
@@ -83,11 +84,17 @@ class Solution:
 
 # solution two
 # Complexity:
-# O(2^n * logn) time - where n is the number of candidates
+# O(2^n) time - where n is the number of candidates
 # The 2^n is because for each candidate, we have two choices, either to include it in the combination or not.
-# The logn is because we are using the list slicing operation to create a copy of the current combination.
-# O(nlogn) space - where n is the number of candidates,
-# the logn is because each combination that can contain logn nodes in case of a balanced binary tree.
+# O(n) space - where n is the number of candidates,
+# if we consider the result array, the space complexity would be O(2^n * k), where k is the average length of each combination.
+# Actually, the time complexity can be less in practice, especially if the target is small compared to the candidates.
+# A more precise upper bound would be O(n^t/m+1), where t is the target value and m is the minimum value in candidates.
+# The space complexity could be O(t/m) because at any time, we can pile up to t/m recursive calls of the backtrack function,
+# and if we consider the result array, the space complexity would be O(n^t/m * t/m), where t/m is the average length of each combination.
+# So, complexity can also be:
+# O(n^t/m+1) time - where n is the number of candidates, t is the target value, and m is the minimum value among the candidates
+# O(t/m) space - where t is the target value and m is the minimum value among the candidates
 class Solution:
     def combinationSum(self, candidates, target):
         # store the final result
