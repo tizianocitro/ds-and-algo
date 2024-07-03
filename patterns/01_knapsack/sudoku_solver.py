@@ -82,6 +82,18 @@ class Solution:
             if board[x][col] == num:
                 return False
             # check if the same number is in the same 3x3 box
+            '''
+            First bracket [(row//3)*3 + x//3]:
+            - row//3: gives us 0 for rows 0-2, 1 for rows 3-5, and 2 for rows 6-8
+            - (row//3)*3: gives us 0, 3, or 6. This is the starting row of the 3x3 box
+            - x//3: as x goes from 0 to 8, this gives us 0, 0, 0, 1, 1, 1, 2, 2, 2
+            - the sum of these gives us the correct row within the 3x3 box
+            Second bracket [(col//3)*3 + x%3]:
+            - col//3: gives us the starting column of the 3x3 box (0, 3, or 6)
+            - x%3: as x goes from 0 to 8, this gives us 0, 1, 2, 0, 1, 2, 0, 1, 2
+
+            So with these two we go over every column of every row in the 3x3 box
+            '''
             if board[(row//3)*3 + x//3][(col//3)*3 + x%3] == num:
                 return False
         return True
