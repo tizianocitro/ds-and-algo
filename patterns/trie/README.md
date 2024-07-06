@@ -138,8 +138,8 @@ Consider that we need to insert the 'can', 'cat', 'cant', and 'apple' into the t
     t   n p
     |     |
     t     l
-        |
-        e
+          |
+          e
     ```
     *Explanation*: Starting from the root, we add nodes for each character in "apple" branching from the 'a' node.
 
