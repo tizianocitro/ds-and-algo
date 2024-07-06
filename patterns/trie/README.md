@@ -186,3 +186,126 @@ class Trie:
 
 ## Searching in Trie Data Structure
 
+Searching into Trie is similar to the insertion into the Trie. Let's look at the below algorithm to search in the Trie data structure.
+
+### Algorithm
+
+1. Start from the root node.
+2. For each character in the word:
+    1. Calculate its index (e.g., 'a' is 0, 'b' is 1, ...).
+    2. Check if the corresponding child node exists. 
+    3. If it exists, move to the child node and continue. 
+    4. If it doesn't exist, return false (word not found).
+3. After processing all characters, check the `isEndOfWord` flag of the current node. If it's true, the word exists in the Trie; otherwise, it doesn't.
+
+### Code
+
+```python
+class TrieNode:
+    def __init__(self):
+        self.children = [None] * 26
+        self.isEndOfWord = False
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def search(self, word):
+        node = self.root
+        for char in word:
+            index = ord(char) - ord('a')
+            if not node.children[index]:
+                # word not found
+                return False
+            node = node.children[index]
+        # return true if word exists, false otherwise
+        return node.isEndOfWord
+```
+
+### Complexity Analysis
+
+**Time Complexity**: `O(n)` - Where n is the length of the word. This happens when you have to traverse the Trie to the deepest level.
+
+**Space Complexity**: `O(1)` - Searching doesn't require any additional space as it's just about traversing the Trie.
+
+## Deletion in Trie Data Structure
+
+When we delete a key in a Trie, there are three cases to consider:
+
+1. **Key is a leaf node**: If the key is a leaf node, we can simply remove it from the Trie.
+2. **Key is a prefix of another key**: If the key is a prefix of another key in the Trie, then we cannot remove it entirely. Instead, we just unmark the isEndOfWord flag.
+3. **Key has children**: If the key has children, we need to recursively delete the child nodes. If a child node becomes a leaf node after the deletion of the key, we can remove the child node as well.
+
+### Algorithm
+
+1. **Initialization**:
+    1. Start from the root of the Trie.
+    2. Begin with the first character of the word you want to delete.
+2. **Base Case**:
+    1. If you've reached the end of the word:
+        1. Check if the current node has the `isEndOfWord` flag set to true. If not, the word doesn't exist in the Trie, so return false.
+        2. If the flag is true, unset it. This means the word is no longer recognized as a word in the Trie.
+        3. Check if the current node has any children. If it doesn't, it means this node doesn't contribute to any other word in the Trie, so it can be safely deleted. Return true to indicate to its parent that it can be removed.
+3. **Recursive Case**:
+    1. For the current character in the word:
+        1. Calculate its index (e.g., 'a' is 0, 'b' is 1, ...).
+        2. Check if the corresponding child node exists. If it doesn't, the word is not present in the Trie, so return false.
+        3. If the child node exists, make a recursive call to the delete function with the child node and the next character in the word.
+4. **Post-Recursive Handling**:
+    1. After the recursive call, check the return value:
+        1. If it's true, it means the child node can be deleted. Remove the reference to the child node.
+        2. Check the current node. If it doesn't have any other children and its `isEndOfWord` flag is not set, it means this node doesn't contribute to any word in the Trie. Return true to indicate to its parent that it can be removed.
+        3. If the node has other children or its `isEndOfWord` flag is set, return false.
+5. **Completion**: Once all characters in the word have been processed, the word will either be deleted from the Trie (if it existed) or the Trie will remain unchanged (if the word didn't exist).
+
+### Code
+
+```python
+class TrieNode:
+    def __init__(self):
+        self.children = [None] * 26
+        self.isEndOfWord = False
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+
+    # recursive function to delete a key from the Trie
+    def _delete(self, current, word, index):
+        if index == len(word):
+            if current.isEndOfWord:
+                current.isEndOfWord = False
+                # all children are None because any() checks
+                # whether there is at least one non-None child
+                return not any(current.children)
+            # return false because we got to the end,
+            # so the word is not in the Trie
+            return False
+
+        ch = word[index]
+        node = current.children[ord(ch) - ord('a')]
+        if not node:
+            # the word is not in the Trie
+            return False
+
+        # try to delete the next character
+        shouldDeleteChild = self._delete(node, word, index + 1)
+        if shouldDeleteChild:
+            # if the child can be deleted, delete it by setting it to None
+            current.children[ord(ch) - ord('a')] = None
+            # return to the parent that it can be deleted if it has no children
+            # because it does not contribute to any other word
+            return not any(current.children)
+
+        return False
+
+    # function to delete a word from the Trie
+    def deleteWord(self, word):
+        self._delete(self.root, word, 0)
+```
+
+### Complexity Analysis
+
+**Time Complexity**: `O(n)` - Where n is the length of the word. This is when you have to traverse the Trie to the deepest level and potentially backtrack to delete nodes.
+
+**Space Complexity**: `O(1)` - Deletion, like searching, doesn't require any additional space.
