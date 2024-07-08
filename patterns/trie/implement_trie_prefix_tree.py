@@ -39,7 +39,7 @@ Explanation: After inserting "grape", "grape" exists in the Trie. There are word
 # - search: O(n) where n is the length of the word
 # - startsWith: O(n) where n is the length of the prefix
 # Space (whole trie):
-# O(nm) - where n is the number of inserted words and m is the average word length.
+# O(nm) - where n is the number of inserted words and m is the average word length
 class TrieNode:
     def __init__(self):
         # dictionary to store child nodes
