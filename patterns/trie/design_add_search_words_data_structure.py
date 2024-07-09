@@ -61,6 +61,8 @@ class Solution:
         for ch in word:
             if ch not in node.children:
                 node.children[ch] = TrieNode()
+            # print the char associated with each child of a node
+            # print([child for child in node.children.keys()])
             # move on to the next character/node
             node = node.children[ch]
         # after processing all characters of the word,
