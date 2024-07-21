@@ -1,4 +1,4 @@
-# difficulty: medium, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/topological-sort-medium
+# !difficulty: medium, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/topological-sort-medium
 
 '''Problem:
 Topological Sort of a directed graph (a graph with unidirectional edges) is a linear ordering of its vertices
