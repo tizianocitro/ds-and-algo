@@ -31,7 +31,7 @@ Output: [0, 7, 13, 27, 10, -1]
 # O(v^2 + e) time - where v is the number of vertices and e is the number of edges
 # O(v) because we visit all nodes and for each node we need O(v) to find the node with min distance
 # O(e) because for each node, we vist all of each edges, so across all nodes we visit all edges
-# (v) spaces - where v is the number of vertices, because we store all nodes in the visited if all nodes are reacheable
+# O(v) space - where v is the number of vertices, because we store all nodes in the visited if all nodes are reacheable
 # and because we store the min distance for each node
 def dijkstrasAlgorithm(start, edges):
     # edges is an ajacency list, meaning that its length is the same as the number of nodes
@@ -106,7 +106,7 @@ def getNodeWithMinDistance(distances, visited):
 # O(e) because for each node, we vist all of each edges, so across all nodes we visit all edges
 # but for each edge we also need to update its value if the new distance is smaller,
 # and updating the value means updating the heap to ensure it remains heapified, which takes O(logv)
-# (v) spaces - where v is the number of vertices, because we store all nodes in the heap and because we store the min distance for each node
+# O(v) space - where v is the number of vertices, because we store all nodes in the heap and because we store the min distance for each node
 def dijkstrasAlgorithm(start, edges):
     # edges is an ajacency list, meaning that its length is the same as the number of nodes
     numberOfNodes = len(edges)
