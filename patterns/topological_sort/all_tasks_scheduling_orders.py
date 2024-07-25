@@ -83,28 +83,34 @@ class Solution:
 
         # find all sources i.e., all vertices with 0 in-degrees
         sources = deque()
-        for key in in_degrees:
-            if in_degrees[key] == 0:
-                sources.append(key)
+        for node in in_degrees:
+            if in_degrees[node] == 0:
+                sources.append(node)
 
+        # recursive function to print all topological sorts of the graph, backtracking
         self.print_all_topological_sorts(graph, in_degrees, sources, sorted_order)
 
         return self.orders
 
     def print_all_topological_sorts(self, graph, in_degrees, sources, sorted_order):
+        # if sortedOrder doesn't contain all tasks, either we've a cyclic dependency between 
+        # tasks, or we have not processed all the tasks in this recursive call
+        if len(sorted_order) == len(in_degrees):
+            self.orders.append(sorted_order.copy())
+
         if sources:
-            for vertex in sources:
-                sorted_order.append(vertex)
+            for source in sources:
+                sorted_order.append(source)
 
                 # make a copy of sources
                 next_sources = deque(sources)
 
                 # only remove the current source, all other sources should
                 # remain in the queue for the next call
-                next_sources.remove(vertex)
+                next_sources.remove(source)
 
                 # get the node's children to decrement their in-degrees
-                for child in graph[vertex]:
+                for child in graph[source]:
                     in_degrees[child] -= 1
                     if in_degrees[child] == 0:
                         next_sources.append(child)
@@ -112,13 +118,13 @@ class Solution:
                     # recursive call to print other orderings from the remaining (and new) sources
                     self.print_all_topological_sorts(graph, in_degrees, next_sources, sorted_order)
 
-                    # backtrack, remove the vertex from the sorted order and put all of its children 
-                    # back to consider the next source instead of the current vertex
-                    sorted_order.remove(vertex)
-                    for child in graph[vertex]:
+                    # backtrack, remove the source from the sorted order and put all of its children 
+                    # back to consider the next source instead of the current source
+                    sorted_order.remove(source)
+                    for child in graph[source]:
                         in_degrees[child] += 1
 
-        # if sortedOrder doesn't contain all tasks, either we've a cyclic dependency between 
-        # tasks, or we have not processed all the tasks in this recursive call
-        if len(sorted_order) == len(in_degrees):
-            self.orders.append(sorted_order.copy())
+        # here is equivalent to the same if statement at the beginning
+        # of the function, you can do it here or there
+        # if len(sorted_order) == len(in_degrees):
+        #     self.orders.append(sorted_order.copy())
