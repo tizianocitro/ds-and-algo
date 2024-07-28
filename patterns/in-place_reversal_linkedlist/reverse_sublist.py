@@ -1,4 +1,4 @@
-# !difficulty: medium
+# !difficulty: medium, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/6394ddf7a05eca1732753441
 
 '''Problem:
 Given the head of a LinkedList and two positions p and q, reverse the LinkedList from position p to q.

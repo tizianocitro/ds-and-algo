@@ -1,4 +1,4 @@
-# !difficulty: medium
+# !difficulty: medium, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/6394ea291182a7b58b691939
 
 '''Problem:
 Given the head of a LinkedList and a number k, reverse every alternating k sized sub-list starting from the head.

@@ -1,4 +1,4 @@
-# !difficulty: medium
+# !difficulty: medium, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/6394ef9cc6ebad0cc48b8076
 
 '''Problem:
 Given the head of a Singly LinkedList and a number k, rotate the LinkedList to the right by k nodes.
