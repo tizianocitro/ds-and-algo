@@ -1,4 +1,4 @@
-# !difficulty: medium
+# !difficulty: medium, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/63dd974b61dc5307bdb78545
 
 '''Problem:
 Given a set of intervals, find out if any two intervals overlap.

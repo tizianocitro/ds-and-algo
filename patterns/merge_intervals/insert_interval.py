@@ -1,4 +1,4 @@
-# !difficulty: medium
+# !difficulty: medium, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/639245dffed07e597e96219f
 
 '''Problem:
 Given a list of non-overlapping intervals sorted by their start time,

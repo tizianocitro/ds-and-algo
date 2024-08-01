@@ -1,4 +1,4 @@
-# !difficulty: medium
+# !difficulty: medium, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/639249470cddc1617da1b889
 
 '''Problem:
 Given two lists of intervals, find the intersection of these two lists. Each list consists of disjoint intervals sorted on their start time.

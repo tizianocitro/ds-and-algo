@@ -1,4 +1,4 @@
-# !difficulty: medium
+# !difficulty: medium, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/63923e6de4cb724ea719007a
 
 '''Problem:
 Given a list of intervals, merge all the overlapping intervals to produce a list that has only mutually exclusive intervals.

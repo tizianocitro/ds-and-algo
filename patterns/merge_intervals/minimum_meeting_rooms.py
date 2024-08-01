@@ -1,4 +1,4 @@
-# !difficulty: hard
+# !difficulty: hard, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/639366c54599b3e5714ab178
 
 '''Problem:
 Given a list of intervals representing the start and end time of N meetings,

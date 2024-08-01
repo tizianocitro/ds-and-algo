@@ -1,4 +1,4 @@
-# !difficulty: medium
+# !difficulty: medium, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/639363de4599b3e5714ab022
 
 '''Problem:
 Given an array of intervals representing N appointments, find out if a person can attend all the appointments.

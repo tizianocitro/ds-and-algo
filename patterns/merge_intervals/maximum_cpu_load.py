@@ -1,4 +1,4 @@
-# !difficulty: hard
+# !difficulty: hard, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/63936a049634a0fa11c91b2b
 
 '''Problem:
 We are given a list of Jobs. Each job has a Start time, an End time, and a CPU load when it is running.
