@@ -1,4 +1,4 @@
-# !difficulty: medium, !from:
+# !difficulty: medium, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/number-of-provinces-medium
 
 '''Problem:
 There are n cities. Some of them are connected in a network.
