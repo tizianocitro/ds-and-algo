@@ -52,13 +52,16 @@ class UnionFind:
         uset = self.find(u)
         vset = self.find(v)
 
+        if uset == vset:
+            return
+
         if self.rank[uset] < self.rank[vset]:
             self.parent[uset] = vset
         elif self.rank[uset] > self.rank[vset]:
             self.parent[vset] = uset
         else:
             self.parent[uset] = vset
-            self.rank[uset] += 1
+            self.rank[vset] += 1
 
 class Solution:
     def findRedundantConnection(self, edges):
