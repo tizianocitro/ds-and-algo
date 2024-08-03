@@ -18,6 +18,10 @@ Output: 2
 Explaination: there are two provinces: cities 0 and 3 are interconnected forming one province, and cities 1 and 2 form another.
 '''
 
+'''Other solutions:
+Look at the patterns/union_find/number_of_provinces.py file for other solutions to this problem.
+'''
+
 # solution one recursive
 # Complexity:
 # O(v^2) time - where v is the number of cities
@@ -27,15 +31,15 @@ Explaination: there are two provinces: cities 0 and 3 are interconnected forming
 # and the we have to run dfs on all the nodes because the check ''if node not in visited'' always returns True.
 # O(v) space - where n is the number of cities
 class Solution:
-    def findCircleNum(self, isConnected) -> int:
+    def findCircleNum(self, is_connected) -> int:
         provinces = 0
-        number_of_nodes = len(isConnected)
+        number_of_nodes = len(is_connected)
         visited = set()
         # this will be run for each node in the graph that has not been visited,
         # if the graph is not connected, this will be run for all the nodes
         for node in range(number_of_nodes):
             if node not in visited:
-                self.dfs(isConnected, node, visited)
+                self.dfs(is_connected, node, visited)
                 provinces += 1
         return provinces
 
@@ -59,8 +63,8 @@ class Solution:
 # and the we have to run dfs on all the nodes because the check ''if node in visited'' always returns False.
 # O(v) space - where n is the number of cities
 class Solution:
-    def findCircleNum(self, isConnected) -> int:
-        return self.dfs(isConnected)
+    def findCircleNum(self, is_connected) -> int:
+        return self.dfs(is_connected)
 
     def dfs(self, graph):
         provinces = 0
@@ -97,12 +101,12 @@ class Solution:
 # O(v^2) space - where n is the number of cities, because of the graph
 # in the worst case, each node can have connections to every other node, resulting in O(v^2) space complexity for the adjacency list.
 class Solution:
-    def findCircleNum(self, isConnected) -> int:
-        number_of_nodes = len(isConnected)
+    def findCircleNum(self, is_connected) -> int:
+        number_of_nodes = len(is_connected)
         graph = {i: [] for i in range(number_of_nodes)}
         for i in range(number_of_nodes):
             for j in range(number_of_nodes):
-                if i != j and isConnected[i][j] == 1:
+                if i != j and is_connected[i][j] == 1:
                     graph[i].append(j)
 
         return self.dfs(graph)
