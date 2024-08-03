@@ -89,4 +89,11 @@ class Solution:
                     # decrease the number of provinces
                     num_provinces -= 1
 
+                # the body of the two for loop can also be written in the following way
+                # if i != j and uf.find(i) != uf.find(j) and is_connected[i][j] == 1:
+                #     # merge connected nodes that are not in the same province yet
+                #     uf.union(i, j)
+                #     # decrease the number of provinces
+                #     num_provinces -= 1
+
         return num_provinces
