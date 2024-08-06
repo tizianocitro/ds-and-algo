@@ -1,4 +1,4 @@
-# !difficulty: easy
+# !difficulty: easy, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/63922bb1b689b698075a9a59
 
 ''' Problem:
 Given the head of a Singly LinkedList, write a method to return the middle node of the LinkedList.

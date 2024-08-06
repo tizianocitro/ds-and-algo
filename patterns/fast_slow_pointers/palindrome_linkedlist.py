@@ -1,4 +1,4 @@
-# !difficulty: medium
+# !difficulty: medium, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/63922d27b689b698075a9ab3
 
 ''' Problem:
 Given the head of a Singly LinkedList, write a method to check if the LinkedList is a palindrome or not.

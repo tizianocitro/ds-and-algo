@@ -1,4 +1,4 @@
-# !difficulty: easy
+# !difficulty: easy, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/63dda065488110f74a930ebc
 
 ''' Problem:
 Given the head of a LinkedList with a cycle, find the length of the cycle.

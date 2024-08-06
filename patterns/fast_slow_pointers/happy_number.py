@@ -1,3 +1,5 @@
+# !difficulty: medium, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/63911273cf5aba4f2f70b5fe
+
 ''' Problem:
 Any number will be called a happy number if, after repeatedly replacing it with a number equal to the sum of the square of all of its digits,
 leads us to the number 1. All other (not-happy) numbers will never reach 1.

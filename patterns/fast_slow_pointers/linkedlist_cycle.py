@@ -1,4 +1,4 @@
-# !difficulty: easy
+# !difficulty: easy, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/639105492e1c0a1cfe6c1eb9
 
 ''' Problem:
 Given the head of a Singly LinkedList, write a function to determine if the LinkedList has a cycle in it or not.

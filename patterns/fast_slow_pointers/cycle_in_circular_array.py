@@ -1,4 +1,4 @@
-# !difficulty: hard
+# !difficulty: hard, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/6392394ee4cb724ea7189954
 
 ''' Problem:
 We are given an array containing positive and negative numbers.

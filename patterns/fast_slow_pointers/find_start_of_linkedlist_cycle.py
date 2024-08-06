@@ -1,4 +1,4 @@
-# !difficulty: medium
+# !difficulty: medium, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/6391094ea637a0a5c98582ee
 
 ''' Problem:
 Given the head of a Singly LinkedList that contains a cycle, write a function to find the starting node of the cycle.
