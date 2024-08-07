@@ -88,7 +88,7 @@ Imagine an application that maintains a log of user activities. An ordered set c
 Here's is the implementation in Python:
 
 ```python
-class OrderedSetPython:
+class OrderedSet:
     def __init__(self):
         self.set = []
 
