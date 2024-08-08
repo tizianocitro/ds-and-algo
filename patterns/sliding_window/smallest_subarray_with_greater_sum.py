@@ -1,4 +1,4 @@
-# !difficulty: easy
+# !difficulty: easy, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/636b1d083b22faa3e89b2478
 
 '''Problem:
 Given an array of positive integers and a number S, find the length of the smallest contiguous subarray whose sum is greater than or equal to S.

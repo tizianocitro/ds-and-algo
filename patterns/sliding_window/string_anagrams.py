@@ -1,4 +1,4 @@
-# !difficulty: hard
+# !difficulty: hard, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/6385d8b24a29c96532f7c329
 
 '''Problem:
 Given a string and a pattern, find all anagrams of the pattern in the given string.

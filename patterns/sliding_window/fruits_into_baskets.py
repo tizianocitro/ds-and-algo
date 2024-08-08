@@ -1,4 +1,4 @@
-# !difficulty: medium
+# !difficulty: medium, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/6385d2dae25dea6343fd8b19
 
 '''Problem:
 You are visiting a farm to collect fruits. The farm has a single row of fruit trees.

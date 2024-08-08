@@ -1,4 +1,4 @@
-# !difficulty: hard
+# !difficulty: hard, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/6385d4b24a29c96532f7bb19
 
 '''Problem:
 Given a string with lowercase letters only, if you are allowed to replace no more than k letters with any letter,

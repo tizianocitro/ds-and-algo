@@ -1,4 +1,4 @@
-# !difficulty: hard
+# !difficulty: hard, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/6385d6304a29c96532f7bcb2
 
 '''Problem:
 Given an array containing 0s and 1s, if you are allowed to replace no more than k 0s with 1s,

@@ -1,4 +1,4 @@
-# !difficuly: easy
+# !difficuly: easy, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/636b1d083b22faa3e89b243c
 
 '''Problem:
 Given an array, find the average of all contiguous subarrays of size K in it.

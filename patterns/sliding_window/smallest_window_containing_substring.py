@@ -1,4 +1,4 @@
-# !difficulty: hard
+# !difficulty: hard, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/6385d9b64a29c96532f7c4e2
 
 '''Problem:
 Given a string and a pattern, find the smallest substring in the given string which has all the character occurrences of the given pattern.

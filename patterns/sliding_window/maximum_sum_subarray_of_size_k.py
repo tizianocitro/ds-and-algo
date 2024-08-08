@@ -1,4 +1,4 @@
-# !difficulty: easy
+# !difficulty: easy, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/636b1d083b22faa3e89b2458
 
 '''Problem:
 Given an array of positive numbers and a positive number k,

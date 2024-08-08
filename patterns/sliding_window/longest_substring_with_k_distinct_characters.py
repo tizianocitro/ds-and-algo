@@ -1,4 +1,4 @@
-# !difficulty: medium
+# !difficulty: medium, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/6384513a635674508787c7c3
 
 '''Problem:
 Given a string, find the length of the longest substring in it with no more than K distinct characters.

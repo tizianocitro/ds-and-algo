@@ -1,4 +1,4 @@
-# !difficulty: hard
+# !difficulty: hard, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/6385d76c4a29c96532f7c16b
 
 '''Problem:
 Given a string and a pattern, find out if the string contains any permutation of the pattern.
