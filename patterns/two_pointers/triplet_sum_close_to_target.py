@@ -1,4 +1,4 @@
-# !difficulty: medium
+# !difficulty: medium, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/638f7323ae53511bdc364dab
 
 ''' Problem:
 Given an array of unsorted numbers and a target number,

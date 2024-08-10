@@ -1,4 +1,4 @@
-# !difficulty: medium
+# !difficulty: medium, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/638fa28f5844e928cbefff88
 
 ''' Problem:
 Given two strings containing backspaces (identified by the character #), check if the two strings are equal.

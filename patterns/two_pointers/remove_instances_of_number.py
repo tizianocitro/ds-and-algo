@@ -1,4 +1,4 @@
-# !difficulty: easy
+# !difficulty: easy, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/63dda4ad488110f74a93371d
 
 ''' Problem:
 Given an unsorted array of numbers and a target key,

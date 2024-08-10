@@ -1,4 +1,4 @@
-# !difficulty: medium
+# !difficulty: medium, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/638f9b3e239cfbfb10ee82f3
 
 ''' Problem:
 Also called the 'three-way partitioning' problem.

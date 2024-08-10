@@ -1,4 +1,4 @@
-# !difficulty: medium
+# !difficulty: medium, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/638fa5205844e928cbf004bf
 
 ''' Problem:
 Given an array, find the length of the smallest subarray in it which when sorted will sort the whole array.

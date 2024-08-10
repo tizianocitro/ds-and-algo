@@ -1,4 +1,4 @@
-# !difficulty: easy
+# !difficulty: easy, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/638e33feac0cc8a9358a25ac
 
 ''' Problem:
 Given an array of sorted numbers, move all non-duplicate number instances at the beginning of the array in-place.

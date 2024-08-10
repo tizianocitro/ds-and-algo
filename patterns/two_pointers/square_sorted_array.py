@@ -1,4 +1,4 @@
-# !difficulty: easy
+# !difficulty: easy, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/638e39bd1756319ef156bebc
 
 ''' Problem:
 Given a sorted array, create a new array containing squares of all the numbers of the input array in the sorted order.

@@ -1,4 +1,4 @@
-# !difficulty: medium
+# !difficulty: medium, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/638f976d20f87893374e4e6b
 
 ''' Problem:
 Given an array with positive numbers and a positive target number, find all of its contiguous subarrays whose product is less than the target number.
