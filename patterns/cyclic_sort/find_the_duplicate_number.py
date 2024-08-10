@@ -1,4 +1,4 @@
-# !difficulty: easy
+# !difficulty: easy, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/6393aee5ba7c985340679287
 
 '''Problem:
 We are given an unsorted array containing n + 1 numbers taken from the range 1 to n.

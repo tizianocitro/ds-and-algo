@@ -1,4 +1,4 @@
-# !difficulty: easy
+# !difficulty: easy, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/6393b0a334689e585e94a29a
 
 '''Problem:
 We are given an unsorted array containing n numbers taken from the range 1 to n.

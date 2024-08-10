@@ -1,4 +1,4 @@
-# !difficulty: easy
+# !difficulty: easy, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/6393a98bd8a93f4bff961b4d
 
 '''Problem:
 We are given an array containing n objects. Each object, when created, was assigned a unique number from the range 1 to n based on their creation sequence.
