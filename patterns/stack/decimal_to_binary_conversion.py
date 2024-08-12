@@ -1,4 +1,4 @@
-# !difficulty: easy
+# !difficulty: easy, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/6490145d2d3ff689ba978d02
 
 '''Problem:
 Given a positive integer n, write a function that returns its binary equivalent as a string.

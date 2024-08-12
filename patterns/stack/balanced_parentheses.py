@@ -1,4 +1,4 @@
-# !difficulty: easy
+# !difficulty: easy, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/64804bc840c761a52b2a872f
 
 '''Problem:
 Given a string s containing (, ), [, ], {, and } characters.
