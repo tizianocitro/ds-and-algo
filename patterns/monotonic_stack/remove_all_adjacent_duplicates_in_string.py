@@ -1,4 +1,4 @@
-# !difficulty: easy
+# !difficulty: easy, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/64c0f4899d852050755badbe
 
 '''Problem:
 Given a string s, remove all adjacent duplicate characters recursively to generate the resultant string.

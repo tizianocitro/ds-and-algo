@@ -1,4 +1,4 @@
-# !difficulty: hard
+# !difficulty: hard, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/64c15ba01e1cb44fbe63ddc3
 
 '''Problem:
 Given a non-negative integer represented as a string num and an integer k, delete k digits from num to obtain the smallest possible integer.

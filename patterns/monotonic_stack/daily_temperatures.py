@@ -1,4 +1,4 @@
-# !difficulty: easy
+# !difficulty: easy, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/64c151c7505e25aa946412b6
 
 '''Problem:
 Given an array of integers temperatures representing daily temperatures,
