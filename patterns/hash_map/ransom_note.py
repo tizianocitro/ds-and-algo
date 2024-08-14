@@ -1,4 +1,4 @@
-# !difficulty: easy
+# !difficulty: easy, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/64fd6a77826e0e8c47b7f345
 
 '''Problem:
 Given two strings, one representing a ransom note and the other representing the available letters from a magazine,

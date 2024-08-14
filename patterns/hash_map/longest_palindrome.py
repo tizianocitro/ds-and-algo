@@ -1,4 +1,4 @@
-# !difficulty: easy
+# !difficulty: easy, !from: https://www.designgurus.io/course-play/grokking-the-coding-interview/doc/64fd83859592e24ab8b03ab7
 
 '''Problem:
 Given a string, determine the length of the longest palindrome that can be constructed using the characters from the string.
