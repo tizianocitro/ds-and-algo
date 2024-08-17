@@ -15,8 +15,8 @@ Output: 3 (not 3.87, because we want the integer part of the square root)
 
 # solution one
 # Complexity:
-# O(log(n)) time - where n is the size of the search space.
-# In this case, the search space is from 2 to x/2. So O(log(x/2)) = O(logx).
+# O(log(n)) time - where n is the size of the search space
+# In this case, the search space is from 2 to x/2. So O(log(x/2)) = O(logx)
 # O(1) space
 class Solution:
     def mySqrt(self, x: int) -> int:
@@ -30,7 +30,7 @@ class Solution:
             if squared == x:
                 return middle
             if squared > x:
-                right -= 1
+                right = middle - 1
             else:
-                left += 1
+                left = middle + 1
         return right
