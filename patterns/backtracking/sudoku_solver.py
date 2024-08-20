@@ -88,8 +88,9 @@ class Solution:
             - (row//3)*3: gives us 0, 3, or 6. This is the starting row of the 3x3 box
             - x//3: as x goes from 0 to 8, this gives us 0, 0, 0, 1, 1, 1, 2, 2, 2
             - the sum of these gives us the correct row within the 3x3 box
+            - this because we have to check three times the row 0 (just with different columns), then three times the row 1 and 2
             Second bracket [(col//3)*3 + x%3]:
-            - col//3: gives us the starting column of the 3x3 box (0, 3, or 6)
+            - (col//3)*3: gives us the starting column of the 3x3 box (0, 3, or 6)
             - x%3: as x goes from 0 to 8, this gives us 0, 1, 2, 0, 1, 2, 0, 1, 2
 
             So with these two we go over every column of every row in the 3x3 box
