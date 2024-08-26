@@ -1,4 +1,4 @@
-# !difficulty: easy, !from: https://leetcode.com/problems/binary-tree-paths/
+# !code: 257, !difficulty: easy, !from: https://leetcode.com/problems/binary-tree-paths/
 
 '''Problem:
 Given a binary tree, return all root-to-leaf paths.
