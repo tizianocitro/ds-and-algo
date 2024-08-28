@@ -32,7 +32,7 @@ Explanation:
 # Complexity:
 # O(1) time - for both get and put
 # O(n) space - where n is the capacity of the cache (for the hash map and doubly linked list)
-class Node(object):
+class Node:
 
     # -1 is the default value for key and value,
     # and it is used for the head and tail nodes
@@ -41,7 +41,7 @@ class Node(object):
         self.value = value
         self.prev = self.next = None
 
-class LRUCache(object):
+class LRUCache:
 
     def __init__(self, capacity):
         """
