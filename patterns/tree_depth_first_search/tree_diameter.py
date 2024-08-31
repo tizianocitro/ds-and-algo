@@ -28,7 +28,8 @@ class Solution:
         self.tree_diameter = 0
 
     def findDiameter(self, root):
-        # instead of using __init__ method to initialize the instance variable, we can initialize it here
+        # instead of using __init__ method to initialize the instance variable,
+        # we can initialize it here:
         # self.treeDiameter = 0
         self.dfsDiameter(root)
         return self.tree_diameter
@@ -42,7 +43,7 @@ class Solution:
 
         # calculate the diameter at the current node
         diameter = left_longest + right_longest + 1
-        
+
         # get the longest diameter
         self.tree_diameter = max(self.tree_diameter, diameter)
 
@@ -64,7 +65,7 @@ class TreeNode:
 
 class Solution:
     def findDiameter(self, root):
-        tree_diameter = 0;
+        tree_diameter = 0
         tree_diameter, _ = self.dfsDiameter(root)
         return tree_diameter
 
