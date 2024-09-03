@@ -86,6 +86,8 @@ class Solution:
 class Solution:
 
     def topKFrequent(self, nums, k):
+        # using self.freq to avoi passing the freq as an argument
+        # to quickSelect and other functions
         self.freq = {}
         for num in nums:
             self.freq[num] = self.freq.get(num, 0) + 1
@@ -94,22 +96,25 @@ class Solution:
         # duplicates are handled by frequency, so we need to get the unique numbers
         unique_nums = list(self.freq.keys())
         n = len(unique_nums)
-        self.quickselect(unique_nums, 0, n - 1, n - k)
+
+        # find the n - kth less frequent number, which is the kth most frequent number
+        self.quickSelect(unique_nums, 0, n - 1, n - k)
 
         # at the end all the numbers to the right of the kth number are more frequent
-        # so the last k numbers are the k most frequent numbers
+        # and all the numbers to the left are less frequent, so we return the right side
+        # the last k numbers are the k most frequent numbers
         return unique_nums[n - k:]
 
-    def quickselect(self, unique_nums, start, end, k_smallest):
+    def quickSelect(self, unique_nums, start, end, k_smallest):
         pivot_ix = self.partition(unique_nums, start, end)
 
         if pivot_ix == k_smallest:
             return
 
         if pivot_ix > k_smallest:
-            self.quickselect(unique_nums, start, pivot_ix - 1, k_smallest)
+            self.quickSelect(unique_nums, start, pivot_ix - 1, k_smallest)
         else:
-            self.quickselect(unique_nums, pivot_ix + 1, len(unique_nums) - 1, k_smallest)
+            self.quickSelect(unique_nums, pivot_ix + 1, len(unique_nums) - 1, k_smallest)
 
     def partition(self, unique_nums, low, high):
         if low == high:
