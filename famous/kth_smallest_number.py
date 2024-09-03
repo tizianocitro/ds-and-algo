@@ -156,6 +156,7 @@ class Solution:
         if low == high:
             return low
 
+        # this is called lamuto partition scheme
         pivot = nums[high]
         for i in range(low, high):
             # all elements less than 'pivot' will be before the index 'low'
