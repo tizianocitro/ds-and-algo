@@ -88,11 +88,11 @@ class Solution:
                 sources.append(node)
 
         # recursive function to print all topological sorts of the graph, backtracking
-        self.print_all_topological_sorts(graph, in_degrees, sources, sorted_order)
+        self.printAllTopologicalSorts(graph, in_degrees, sources, sorted_order)
 
         return self.orders
 
-    def print_all_topological_sorts(self, graph, in_degrees, sources, sorted_order):
+    def printAllTopologicalSorts(self, graph, in_degrees, sources, sorted_order):
         # if sortedOrder doesn't contain all tasks, either we've a cyclic dependency between 
         # tasks, or we have not processed all the tasks in this recursive call
         if len(sorted_order) == len(in_degrees):
@@ -116,7 +116,7 @@ class Solution:
                         next_sources.append(child)
 
                     # recursive call to print other orderings from the remaining (and new) sources
-                    self.print_all_topological_sorts(graph, in_degrees, next_sources, sorted_order)
+                    self.printAllTopologicalSorts(graph, in_degrees, next_sources, sorted_order)
 
                     # backtrack, remove the source from the sorted order and put all of its children 
                     # back to consider the next source instead of the current source
