@@ -28,7 +28,6 @@ Output: [[-14,-10],[19,23],[23,27]]
 # O(nlogn) time - where n is the length of the input array for sorting
 # O(n) space - for the result array
 class Solution:
-
     def minimumAbsDifference(self, arr):
         # no need to check if arr is empty because it is guaranteed to have at least 2 elements
         # sort elements in ascending order

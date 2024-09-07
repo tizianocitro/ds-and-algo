@@ -26,7 +26,6 @@ Output: [1]
 from heapq import *
 
 class Solution:
-
     def topKFrequent(self, nums, k):
         # get the frequency of each number
         freq = {}
@@ -52,7 +51,6 @@ class Solution:
 from heapq import *
 
 class Solution:
-
     def topKFrequent(self, nums, k):
         # get the frequency of each number
         freq = {}
@@ -84,7 +82,6 @@ class Solution:
 # the code also contains a commented out randomized version of the quick select algorithm
 # and another possibility is to implement the pivot selection using the median of medians
 class Solution:
-
     def topKFrequent(self, nums, k):
         # using self.freq to avoi passing the freq as an argument
         # to quickSelect and other functions

@@ -21,14 +21,12 @@ Output: 1
 # O(n) time - where n is the number of nodes in the tree
 # O(n) space - where n is the number of nodes in the tree for the recursion stack
 class TreeNode:
-
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
 
 class Solution:
-
     def diameterOfBinaryTree(self, root):
         self.diameter = 0
         self.dfsDiameter(root)

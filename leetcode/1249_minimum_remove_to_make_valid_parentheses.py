@@ -33,7 +33,6 @@ Explanation: An empty string is also valid.
 # O(n) space - where n is the length of the input string
 # because in the worst case we have all unmatched parentheses
 class Solution:
-
     def minRemoveToMakeValid(self, s: str) -> str:
         unmatched_ix_set, unmatched_par_stack = set(), []
 
@@ -64,7 +63,6 @@ class Solution:
 # O(n) space - where n is the length of the input string
 # because in the worst case we have all unmatched parentheses
 class Solution:
-
     def minRemoveToMakeValid(self, s: str) -> str:
         unmatched_ix_stack, unmatched_par_stack = [], []
 

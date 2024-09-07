@@ -26,7 +26,6 @@ Explanation: Your function can return either index number 1 where the peak eleme
 # O(logn) time -  where n is the length of nums
 # O(1) space
 class Solution:
-
     def findPeakElement(self, nums):
         left, right = 0, len(nums) - 1
 
@@ -58,7 +57,6 @@ class Solution:
 # O(logn) time -  where n is the length of nums
 # O(1) space
 class Solution:
-
     def findPeakElement(self, nums):
         left, right = 0, len(nums) - 1
 

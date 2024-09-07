@@ -28,7 +28,6 @@ Note that because m = 0, there are no elements in nums1. The 0 is only there to 
 # O(n + m) time -  where n is the length of nums1 and m is the length of nums2
 # O(1) space
 class Solution:
-
     def merge(self, nums1, m, nums2, n):
         """
         Do not return anything, modify nums1 in-place instead.

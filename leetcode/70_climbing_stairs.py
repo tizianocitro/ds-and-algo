@@ -24,7 +24,6 @@ Explanation: There are three ways to climb to the top:
 # O(n) time - where n is the number of steps
 # O(1) space
 class Solution:
-
     def climbStairs(self, n: int) -> int:
         # base case, there is only one way to reach 0 and 1
         # for n = 0 or n = 1, there’s only one way to reach the top,
@@ -55,7 +54,6 @@ class Solution:
 # O(n) time - where n is the number of steps
 # O(n) space - for the recursion stack and the memoization dictionary
 class Solution:
-
     def climbStairs(self, n: int) -> int:
         # these other two option would allow to remove the base case
         # from the climbStairsMemo function:
@@ -83,7 +81,6 @@ class Solution:
 # O(2^n) time - where n is the number of steps
 # O(n) space - for the recursion stack
 class Solution:
-
     def climbStairs(self, n: int) -> int:
         # base case, there is only one way to reach 0 and 1
         if n == 0 or n == 1:
