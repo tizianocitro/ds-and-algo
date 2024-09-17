@@ -10,6 +10,10 @@ Input: L1=[5, 8, 9], L2=[1, 7]
 Output: [1, 5, 7, 8, 9]
 '''
 
+'''Notes:
+A better solution is at leetcode/23_merge_k_sorted_lists.py
+'''
+
 # solution one
 # Complexity:
 # O(nlogk) - where n is the total number of elements in all the k input lists
