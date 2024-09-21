@@ -24,7 +24,7 @@ class Solution:
             if len(l) > 0:
                 heappush(min_heap, (l[0], i, 1))
 
-        # find median positionx
+        # find median position
         total_elements = sum(len(list) for list in lists)
         median_pos = total_elements // 2
 
