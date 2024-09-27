@@ -22,20 +22,21 @@ class Solution:
         i, j = len(str1) - 1, len(str2) - 1
         while i >= 0 and j >= 0: # while there are chars in both strings
             # this will iterate all characters in str1 in the worst case
-            nextI = self.findNextIndex(str1, i)
+            next_i = self.findNextIndex(str1, i)
             # this will iterate all characters in str2 in the worst case,
             # so the complexity is O(n + m) because we iterate all chars in both strings
-            nextJ = self.findNextIndex(str2, j)
-            if nextI < 0 and nextJ < 0:
+            next_j = self.findNextIndex(str2, j)
+            if next_i < 0 and next_j < 0:
                 return True
-            if nextI < 0 or nextJ < 0:
+            if next_i < 0 or next_j < 0:
                 return False
-            if str1[nextI] != str2[nextJ]:
+            if str1[next_i] != str2[next_j]:
                 return False
-            i = nextI - 1
-            j = nextJ - 1
+            i = next_i - 1
+            j = next_j - 1
+
         return True
-    
+
     def findNextIndex(self, s, index):
         backspaces = 0
         while index >= 0:
