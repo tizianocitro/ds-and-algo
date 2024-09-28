@@ -100,6 +100,9 @@ class Solution(object):
                 # ensures that we don’t need to revisit the same set of
                 # transformations again in subsequent iterations for
                 # words that share the same intermediate_word
+                # thanks to this optimization, our algorithm only visits each transformation once
+                # because all the words are visited through the 'for i in range(L)' loop
+                # or the 'for word in all_combo_dict[intermediate_word]' loop
                 all_combo_dict[intermediate_word] = []
 
         return 0
