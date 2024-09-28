@@ -78,11 +78,11 @@ where 1 is the minimum are [1], [2, 1], [1, 3], and [2, 1, 3] (all containing 1 
 from itertools import accumulate
 
 class Solution:
-    def totalStrength(self, strength: List[int]) -> int:
+    def totalStrength(self, strength) -> int:
         mod = 10 ** 9 + 7
         n = len(strength)
 
-        # get the first index of the non-larger value to strength[i]'s right
+        # get the first index of the non-larger (smaller or equal) value to strength[i]'s right
         right_index = [n] * n
         stack = []
         for i in range(n):
@@ -127,6 +127,7 @@ class Solution:
             # (pos_presum * left_count - neg_presum * right_count) helps in calculating
             # the net contribution of strength[i] as a minimum in all the relevant subarrays
             result += strength[i] * (pos_presum * left_count - neg_presum * right_count)
+
             # we modulo the result again to avoid overflow
             result %= mod
 
