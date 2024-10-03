@@ -68,14 +68,14 @@ class Solution:
         # to get the number of unique components, we need to find the number of
         # unique parents, so we find the parent of each node and add it to a set
         # this takes O(n * a(v)) time where n is the number of nodes and a(v) is the inverse Ackermann function
-        parents = set(uf.find(i) for i in range(n))
+        components = set(uf.find(u) for u in range(n))
 
         # the number of connected components is the length of the set
-        return len(parents)
+        return len(components)
 
 # solution two using union find but with a slightly different approach
 # Complexity:
-# O((e * a(v)) + n) time - where e is the number of edges, v is the number of vertices, and a(v) is the
+# O((e * a(v)) + v) time - where e is the number of edges, v is the number of vertices, and a(v) is the
 # inverse Ackermann function, a(v) is nearly constant, so the time complexity could be considered O(e + v)
 # O(v) space - to store the parent array in the union find
 class Solution:
@@ -91,7 +91,7 @@ class Solution:
         # initially, each node is a component
         components = n
 
-        # this takes O(n) time where n is the number of nodes
+        # this takes O(v) time where v is the number of nodes
         self.parents = [i for i in range(n)]
 
         # this takes O(e * a(v)) time where e is the number of edges

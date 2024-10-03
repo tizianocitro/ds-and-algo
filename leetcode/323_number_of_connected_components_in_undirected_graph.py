@@ -70,7 +70,7 @@ class Solution:
 
 # solution two using union find but with a slightly different approach
 # Complexity:
-# O((e * a(v)) + n) time - where e is the number of edges, v is the number of vertices, and a(v) is the
+# O((e * a(v)) + v) time - where e is the number of edges, v is the number of vertices, and a(v) is the
 # inverse Ackermann function, a(v) is nearly constant, so the time complexity could be considered O(e + v)
 # O(v) space - to store the parent array in the union find
 class Solution:
