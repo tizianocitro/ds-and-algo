@@ -103,15 +103,17 @@ def quickSort(array):
     return array
 
 def helper(arr, low, high):
-    if low < high:
-        # partition the array and get the pivot index
-        pivot_index = partition(arr, low, high)
+    if low >= high:
+        return
 
-        # recursively sort the left part of the array
-        helper(arr, low, pivot_index - 1)
+    # partition the array and get the pivot index
+    pivot_index = partition(arr, low, high)
 
-        # recursively sort the right part of the array
-        helper(arr, pivot_index + 1, high)
+    # recursively sort the left part of the array
+    helper(arr, low, pivot_index - 1)
+
+    # recursively sort the right part of the array
+    helper(arr, pivot_index + 1, high)
 
 def partition(arr, low, high):
     if low == high:
@@ -165,15 +167,17 @@ def quickSort(array):
     return array
 
 def helper(arr, low, high):
-    if low < high:
-        # partition the array and get the pivot index
-        pivot_index = partition(arr, low, high)
+    if low >= high:
+        return
 
-        # recursively sort the left part of the array
-        helper(arr, low, pivot_index - 1)
+    # partition the array and get the pivot index
+    pivot_index = partition(arr, low, high)
 
-        # recursively sort the right part of the array
-        helper(arr, pivot_index + 1, high)
+    # recursively sort the left part of the array
+    helper(arr, low, pivot_index - 1)
+
+    # recursively sort the right part of the array
+    helper(arr, pivot_index + 1, high)
 
 def partition(arr, low, high):
     if low == high:
