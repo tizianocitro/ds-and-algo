@@ -30,7 +30,7 @@ class Solution:
         k = len(pattern)
         chars_frequencies = {}
         start, matched = 0, 0
-        
+
         for i in range(len(pattern)):
             char = pattern[i]
             chars_frequencies[char] = chars_frequencies.get(char, 0) + 1
@@ -50,6 +50,10 @@ class Solution:
             if matched == len(chars_frequencies):
                 return True
 
+            # we are looking for a permutation of length k (pattern length),
+            # so we shrink the window by one character from the beginning
+            # at any iteration after the end pointer has processed k - 1 characters,
+            # k -1 because the end pointer is 0-based indexed
             if end >= k - 1:
                 char = str1[start]
                 if char in chars_frequencies:
