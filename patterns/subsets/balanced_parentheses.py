@@ -38,16 +38,16 @@ class Solution:
         while queue:
             ps = queue.popleft()
 
-        # if we've reached the maximum number of open and close parentheses, add to result
-        if ps.openCount == num and ps.closeCount == num:
-            result.append(ps.str)
-        else:
-            # if we can add an open parentheses, add it
-            if ps.openCount < num:
-                queue.append(ParenthesesString(ps.str + "(", ps.openCount + 1, ps.closeCount))
+            # if we've reached the maximum number of open and close parentheses, add to result
+            if ps.openCount == num and ps.closeCount == num:
+                result.append(ps.str)
+            else:
+                # if we can add an open parentheses, add it
+                if ps.openCount < num:
+                    queue.append(ParenthesesString(ps.str + "(", ps.openCount + 1, ps.closeCount))
 
-            # if we can add a close parentheses, add it
-            if ps.openCount > ps.closeCount:
-                queue.append(ParenthesesString(ps.str + ")", ps.openCount, ps.closeCount + 1))
+                # if we can add a close parentheses, add it
+                if ps.openCount > ps.closeCount:
+                    queue.append(ParenthesesString(ps.str + ")", ps.openCount, ps.closeCount + 1))
 
         return result
