@@ -18,10 +18,10 @@ class Solution:
         for i in range(len(arr) - 3):
             if i > 0 and arr[i] == arr[i - 1]:
                 continue
-        for j in range(i + 1, len(arr) - 2):
-            if arr[j] == arr[j - 1]:
-                continue
-            self.searchPair(arr, quadruplets, target, i, j)
+            for j in range(i + 1, len(arr) - 2):
+                if arr[j] == arr[j - 1]:
+                    continue
+                self.searchPair(arr, quadruplets, target, i, j)
         return quadruplets
 
     def searchPair(self, arr, quadruplets, target, i, j):
