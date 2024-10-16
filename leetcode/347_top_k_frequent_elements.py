@@ -34,7 +34,8 @@ class Solution:
 
         # use a min_heap to keep the k most frequent numbers
         min_heap = []
-        for num in freq:
+        # .keys() is not necessary, but it makes the code more readable
+        for num in freq.keys():
             heappush(min_heap, (freq[num], num))
             # if the heap is full, remove the smallest frequency number
             if len(min_heap) > k:
