@@ -21,6 +21,10 @@ Input: nums = [1], k = 1
 Output: [1]
 '''
 
+'''Notes:
+Visual explanation at https://www.youtube.com/watch?v=DfljaUwZsOk.
+'''
+
 # solution one using monotonically decreasing queue
 # Complexity:
 # O(n) time - where n is the number of elements in the array
