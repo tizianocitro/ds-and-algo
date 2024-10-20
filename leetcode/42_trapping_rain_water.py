@@ -37,6 +37,8 @@ class Solution:
             # if the left max is less than the right max, we move the left pointer
             # because it means that the left side is the limiting factor to how
             # much rain we can trap, otherwise we move the right pointer
+            # works also with the equal sign (it means that when they are equal, we move on the left side)
+            # if left_max_height <= right_max_height:
             if left_max_height < right_max_height:
                 left += 1
 
