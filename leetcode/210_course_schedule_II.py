@@ -33,6 +33,8 @@ Output: [0]
 # Complexity:
 # O(n + m) time, where n is the number of courses and m is the number of prerequisites
 # O(n + m) space, where n is the number of courses and m is the number of prerequisites
+from collections import deque
+
 class Solution:
     def findOrder(self, numCourses: int, prerequisites):
         # create a list to store the in-degrees of each course
