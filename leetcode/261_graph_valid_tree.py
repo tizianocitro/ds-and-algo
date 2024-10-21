@@ -20,7 +20,65 @@ Input: n = 5, edges = [[0,1],[1,2],[2,3],[1,3],[1,4]]
 Output: false
 '''
 
-# solution one using union find
+# solution two using union find
+# Complexity:
+# O((e + v) * a(v)) time - where e is the number of edges, v is the number of vertices, and a(v) is the
+# inverse Ackermann function, a(v) is nearly constant, so the time complexity could be considered O(e + v)
+# also in the worst case, we work with e = v - 1, so the time complexity could be considered O(v)
+# O(v) space - to store the parent and rank arrays in the union find
+class UnionFind:
+    def __init__(self, n):
+        self.parent = [u for u in range(n)]
+        self.rank = [0] * n
+
+    def find(self, u):
+        if self.parent[u] != u:
+            self.parent[u] = self.find(self.parent[u])
+        return self.parent[u]
+
+    def union(self, u, v):
+        pu = self.find(u)
+        pv = self.find(v)
+
+        # the union operation fails because of a cycle
+        if pv == pu:
+            return False
+
+        if self.rank[pu] < self.rank[pv]:
+            self.parent[pu] = pv
+        elif self.rank[pu] > self.rank[pv]:
+            self.parent[pv] = pu
+        else:
+            self.parent[pu] = pv
+            self.rank[pv] += 1
+
+        return True
+
+class Solution:
+    def validTree(self, n, edges):
+        # it works also without this because in the worst case we would process all the n - 1 valid edges
+        # but on the n-th edge we would return False because it would create a cycle
+        # to be a valid tree, the graph should have n - 1 edges, if less
+        # than not all nodes are connected, if more, then there is a cycle
+        if len(edges) != n - 1:
+            return False
+
+        uf = UnionFind(n)
+
+        # for each edge, union the nodes, this will reduce the number of components
+        # however, this will not give the correct number of unique connected components
+        # this takes O(e * a(v)) time where e is the number of edges and a(v) is the inverse Ackermann function
+        for u, v in edges:
+            # reduce the number of components if two nodes are connected
+            # by updating the parent of one of the two nodes and (union operation)
+            if not uf.union(u, v):
+                # cycle detected, so return False
+            # because the graph is a valid tree if there are no cycles
+                return False
+
+        return True
+
+# solution two using union find
 # Complexity:
 # O((e + v) * a(v)) time - where e is the number of edges, v is the number of vertices, and a(v) is the
 # inverse Ackermann function, a(v) is nearly constant, so the time complexity could be considered O(e + v)
@@ -94,7 +152,7 @@ class Solution:
         # so no need for the lines above that check the number of components
         # return True
 
-# solution two using union find but with a different approach
+# solution three using union find but with a different approach
 # O((e * a(v)) + v) time - where e is the number of edges, v is the number of vertices, and a(v) is the
 # inverse Ackermann function, a(v) is nearly constant, so the time complexity could be considered O(e + v)
 # also in the worst case, we work with e = v - 1, so the time complexity could be considered O(v)
@@ -138,7 +196,7 @@ class Solution:
         # the graph is valid if there is only one connected component
         return components == 1
 
-# solution three using dfs
+# solution four using dfs
 # Complexity:
 # O(e + v) time - where e is the number of edges and v is the number of vertices
 # also in the worst case, we work with e = v - 1, so the time complexity could be considered O(v)
