@@ -45,25 +45,19 @@ Explanation: "06" cannot be mapped to "F" because of the leading zero ("6" is di
 # O(1) space
 class Solution:
     def numDecodings(self, s: str) -> int:
-        n = len(s)
-
-        # if it starts with zero, it cannot be decoded
-        if n == 0 or s.startswith('0'):
+        if s.startswith('0'):
             return 0
 
-        if n == 1:
-            return 1
-
         # two variables to store results of sub-problems
-        # the first s[0] will always have only one way to decode, so prev = 1
-        # the second s[1] will have at least one way to decode if it is not zero, so current = 1
         prev, current = 1, 1
         for i in range(1, len(s)):
             temp = 0
 
             # if current character is not '0', it can be decoded on its own
+            # the first s[0] will always have only one way to decode, so prev = 1
+            # the second s[1] will have at least one way to decode if it is not zero, so current = 1
             if s[i] != '0':
-                temp = current
+                temp += current
 
             # check if two characters can be decoded together
             # alternatively, you can do as follows:
