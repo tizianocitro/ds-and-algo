@@ -95,6 +95,7 @@ class Solution:
     def rob(self, nums):
         # rob2 is the last house we robbed
         # rob1 is the house before the last house we robbed
+        # we haven't robbed any house yet so they are both 0
         rob1, rob2 = 0, 0
 
         # for each house we could rob
