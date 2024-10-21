@@ -84,7 +84,7 @@ class Solution:
 # and another possibility is to implement the pivot selection using the median of medians
 class Solution:
     def topKFrequent(self, nums, k):
-        # using self.freq to avoi passing the freq as an argument
+        # using self.freq to avoid passing the freq as an argument
         # to quickSelect and other functions
         self.freq = {}
         for num in nums:
@@ -127,6 +127,9 @@ class Solution:
         # where the pivot is the last element (index 'high')
         # pivot_ix = random.randint(low, high)
         # unique_nums[pivot_ix], unique_nums[high] = unique_nums[high], unique_nums[pivot_ix]
+        # we can also use the median of medians to select the pivot (as in quick sort)
+        # use file leetcode/215_kth_largest_element_in_an_array.py as a reference
+        # or file sorting/quick_sort.py
 
         pivot = unique_nums[high]
         for i in range(low, high):
