@@ -27,8 +27,8 @@ Explanation: The endWord "cog" is not in wordList, therefore there is no valid t
 
 # solution one using bfs
 # Complexity:
-# O(n * m^2) time, where n is the number of words and m is the length of each word
-# O(n * m^2) time, where n is the number of words and m is the length of each word
+# O(n * m^2) time - where n is the number of words and m is the length of each word
+# O(n * m^2) space - where n is the number of words and m is the length of each word
 '''Complexity Analysis
 Time Complexity: O(M^2xN), where M is the length of each word and N is the total number of words in the input word list.
 - For each word in the word list, we iterate over its length to find all the intermediate words corresponding to it.
@@ -103,6 +103,67 @@ class Solution(object):
                 # thanks to this optimization, our algorithm only visits each transformation once
                 # because all the words are visited through the 'for i in range(L)' loop
                 # or the 'for word in all_combo_dict[intermediate_word]' loop
+                all_combo_dict[intermediate_word] = []
+
+        return 0
+
+# solution two optimizing space complexity by storing indices
+# Complexity:
+# O(n * m^2) time - where n is the number of words and m is the length of each word
+# O(n * m) space - where n is the number of words and m is the length of each word
+from collections import defaultdict, deque
+
+class Solution(object):
+    def ladderLength(self, beginWord: str, endWord: str, wordList) -> int:
+        if endWord not in wordList or not endWord or not beginWord or not wordList:
+            return 0
+
+        # since all words are of same length
+        L = len(beginWord)
+
+        # dictionary to hold combination of words that can be formed,
+        # from any given word. by changing one letter at a time
+        all_combo_dict = defaultdict(list)
+
+        # we store indices to reduce space complexity from O(M^2xN) to O(MxN)
+        for word_ix, word in enumerate(wordList):
+            for i in range(L):
+                # key is the generic word
+                # value is a list of words which have the same intermediate generic word
+                all_combo_dict[word[:i] + '*' + word[i + 1:]].append(word_ix)
+
+        # queue for bfs
+        queue = deque([(beginWord, 1)])
+
+        # visited to make sure we don't repeat processing same word
+        visited = set()
+        visited.add(beginWord)
+
+        while queue:
+            current_word, level = queue.popleft()
+
+            # for each possible position in the word
+            for i in range(L):
+                # intermediate words for current word
+                intermediate_word = current_word[:i] + '*' + current_word[i + 1:]
+
+                # next states are all the words which share the same intermediate state
+                for word_ix in all_combo_dict[intermediate_word]:
+                    word = wordList[word_ix]
+
+                    # if at any point if we find what we are looking for
+                    # i.e. the end word - we can return with the answer
+                    if word == endWord:
+                        return level + 1
+
+                    # otherwise, add it to the bfs queue and mark it visited
+                    if word not in visited:
+                        visited.add(word)
+                        queue.append((word, level + 1))
+
+                # ensures that we don’t need to revisit the same set of
+                # transformations again in subsequent iterations for
+                # words that share the same intermediate_word
                 all_combo_dict[intermediate_word] = []
 
         return 0
