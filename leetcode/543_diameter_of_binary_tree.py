@@ -27,25 +27,26 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def diameterOfBinaryTree(self, root):
-        self.diameter = 0
-        self.dfsDiameter(root)
+    def __init__(self):
+        self.nodes_on_diameter = 0
 
-        # minus 1 because we are counting edges not nodes
-        return self.diameter - 1 
+    def diameterOfBinaryTree(self, root: TreeNode) -> int:
+        self.countNodesOnDiameter(root)
 
-    def dfsDiameter(self, root):
-        if not root:
+        # minus 1 because for the diameter, we need to count edges not nodes
+        return self.nodes_on_diameter - 1
+
+    def countNodesOnDiameter(self, node: TreeNode):
+        if not node:
             return 0
 
-        # recursively get the longest path of left and right subtree
-        left_longest = self.dfsDiameter(root.left)
-        right_longest = self.dfsDiameter(root.right)
+        # recursively get the depth of left and right subtree
+        depth_left = self.countNodesOnDiameter(node.left)
+        depth_right = self.countNodesOnDiameter(node.right)
 
-        # update the diameter at each node
-        diameter = left_longest + right_longest + 1
-        self.diameter = max(self.diameter, diameter)
+        nodes_on_diameter = depth_left + depth_right + 1
+        self.nodes_on_diameter = max(self.nodes_on_diameter, nodes_on_diameter)
 
-        # return the longest path of the current node
+        # return the highest depth of the current node
         # deep to its subtrees to the upper level
-        return max(left_longest, right_longest) + 1
+        return max(depth_left, depth_right) + 1
