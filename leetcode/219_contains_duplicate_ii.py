@@ -19,6 +19,10 @@ Output: false
 '''
 
 # solution one using sliding window and set
+# the set works because we are only interested in the presence of the element
+# because the element can be anywhere in the window but all elements in the window
+# will always be unique, there will never be a duplicate in the window, because
+# if there was a duplicate, we would have returned True
 # Complexity:
 # O(n) time - where n is the length of the nums array
 # O(k) space - where k is input param for the hash map
