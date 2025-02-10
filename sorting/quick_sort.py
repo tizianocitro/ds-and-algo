@@ -116,6 +116,8 @@ def helper(arr, low, high):
     helper(arr, pivot_index + 1, high)
 
 def partition(arr, low, high):
+    # the below if works the same as the one below it
+    # if low >= high:
     if low == high:
         return low
 
