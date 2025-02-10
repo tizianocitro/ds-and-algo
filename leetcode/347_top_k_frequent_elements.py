@@ -28,6 +28,8 @@ from heapq import *
 class Solution:
     def topKFrequent(self, nums, k):
         # get the frequency of each number
+        # you can also just do:
+        # freq = Counter(nums)
         freq = {}
         for num in nums:
             freq[num] = freq.get(num, 0) + 1
@@ -54,14 +56,15 @@ from heapq import *
 class Solution:
     def topKFrequent(self, nums, k):
         # get the frequency of each number
+        # you can also just do:
+        # freq = Counter(nums)
         freq = {}
         for num in nums:
             freq[num] = freq.get(num, 0) + 1
 
         # use a min_heap to keep the k most frequent numbers
         min_heap = []
-        for num in freq:
-            freq_num = freq[num]
+        for num, freq_num in freq.items():
             # if the heap is not full, add the number
             if len(min_heap) < k:
                 heappush(min_heap, (freq_num, num))
