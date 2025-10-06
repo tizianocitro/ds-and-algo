@@ -23,7 +23,27 @@ Explanation: The arrays we are merging are [] and [1]. The result of the merge i
 Note that because m = 0, there are no elements in nums1. The 0 is only there to ensure the merge result can fit in nums1.
 '''
 
-# solution one using merge sort-like two pointers
+# solution one using merge sort-like two pointers but one while loop
+# Complexity:
+# O(n + m) time -  where n is the length of nums1 and m is the length of nums2
+# O(1) space
+class Solution:
+    def merge(self, nums1, m, nums2, n):
+        """
+        Do not return anything, modify nums1 in-place instead.
+        """
+        i, j = m - 1, n - 1
+        k = len(nums1) - 1
+        while j >= 0:
+            if i >= 0 and nums1[i] >= nums2[j]:
+                nums1[i], nums1[k] = nums1[k], nums1[i]
+                i -= 1
+            else:
+                nums1[k] = nums2[j]
+                j -= 1
+            k -= 1
+
+# solution two using merge sort-like two pointers
 # Complexity:
 # O(n + m) time -  where n is the length of nums1 and m is the length of nums2
 # O(1) space
