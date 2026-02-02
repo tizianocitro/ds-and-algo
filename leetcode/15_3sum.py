@@ -28,10 +28,10 @@ Output: [[0,0,0]]
 Explanation: The only possible triplet sums up to 0.
 '''
 
-# solution one using two pointers
+# solution one using k pointers (k = 3)
 # Complexity:
 # O(n^2) time - where n is the length of the input array
-# O(n) space - for sorting
+# O(n) space - for sorting or O(m) where m is the number of triplets found
 class Solution:
     def threeSum(self, nums):
         # sort the number to make it easier to find duplicates
@@ -61,7 +61,11 @@ class Solution:
             # if we get the sum, add it to the triplets
             if total == 0:
                 triplets.append([num, nums[left], nums[right]])
+
+                # shift both pointers as:
+                # - num + x + nums[right] = 0, then x = nums[left] always
                 left += 1
+                # - num + nums[left] + x = 0, then x = nums[right] always
                 right -= 1
 
                 # skip duplicates because we need unique triplets
