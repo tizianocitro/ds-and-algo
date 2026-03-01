@@ -1,4 +1,4 @@
-# !code: 53, !difficulty: medium, !from: https://leetcode.com/problems/maximum-subarray/
+# !code: 53, !difficulty: medium, !from: https://leetcode.com/problems/maximum-subarray, https://neetcode.io/problems/maximum-subarray
 
 '''Problem:
 Given an integer array nums, find the subarray with the largest sum, and return its sum.
@@ -16,7 +16,34 @@ Output: 23
 Explanation: The subarray [5,4,-1,7,8] has the largest sum 23.
 '''
 
-# solution one using Kadane's algorithm
+# solution one using Kadane's algorithm but cleaner
+# Complexity:
+# O(n) time - where n is the length of the input array
+# O(1) space
+class Solution:
+    def maxSubArray(self, nums) -> int:
+        # -inf as nums might contain only negative numbers,
+        # e.g., nums = [-1] and max_sum should be -1 in that case
+        max_sum = float("-inf")
+
+        current_sum = 0
+        for num in nums:
+            # this could also be done at the end of the loop, right after updating the max_sum
+            # it's the same as we do it the next iteration
+            # - first iteration: current_sum = 0, so it remains 0
+            # - last iteration: even if current_sum becomes negative, we don't care
+            if current_sum < 0:
+                current_sum = 0
+
+            current_sum += num
+            max_sum = max(max_sum, current_sum)
+
+            # if current_sum < 0:
+            #     current_sum = 0
+
+        return max_sum
+
+# solution two using Kadane's algorithm
 # Complexity:
 # O(n) time - where n is the length of the input array
 # O(1) space
@@ -28,7 +55,7 @@ class Solution:
         if n == 1:
             return nums[0]
 
-        current_max = global_max = nums[0]
+        current_max = max_sum = nums[0]
 
         for i in range(1, n):
             num = nums[i]
@@ -39,6 +66,6 @@ class Solution:
             current_max = max(num, current_max + num)
 
             # just alwats keep track of the maximum sum so far
-            global_max = max(global_max, current_max)
+            max_sum = max(max_sum, current_max)
 
-        return global_max
+        return max_sum

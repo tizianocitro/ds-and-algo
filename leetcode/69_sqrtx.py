@@ -1,10 +1,9 @@
-# !code: 69, !difficulty: easy, !from: https://leetcode.com/problems/sqrtx/
+# !code: 69, !difficulty: easy, !from: https://leetcode.com/problems/sqrtx, https://neetcode.io/problems/sqrtx
 
 '''Problem:
 Given a non-negative integer x, return the square root of x rounded down to the nearest integer.
 The returned integer should be non-negative as well.
 You must not use any built-in exponent function or operator.
-
 For example, do not use pow(x, 0.5) in c++ or x ** 0.5 in python.
 
 Constraints:
@@ -29,7 +28,9 @@ class Solution:
         if x < 2:
             return x
 
-        # we could optimize the search space by using:
+        # we could optimize the search space by using left = 2
+        # this is because getting square root == 0 or 1 means the input == 0 or 1 respectively,
+        # and we already handled those cases above in the if statement
         # left = 2
         left = 0
         right = x // 2
@@ -43,4 +44,7 @@ class Solution:
             else:
                 right = middle - 1
 
+        # at the end of the loop:
+        # - left is the smallest number such that left^2 > x
+        # - right is the largest number such that right^2 <= x
         return right

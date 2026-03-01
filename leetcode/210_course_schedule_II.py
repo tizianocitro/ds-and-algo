@@ -1,4 +1,4 @@
-# !code: 207, !difficulty: medium, !from: https://leetcode.com/problems/course-schedule-ii/
+# !code: 207, !difficulty: medium, !from: https://leetcode.com/problems/course-schedule-ii, https://neetcode.io/problems/course-schedule-ii
 
 '''Problem:
 There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1.
