@@ -1,4 +1,4 @@
-# !code: 207, !difficulty: medium, !from: https://leetcode.com/problems/course-schedule/
+# !code: 207, !difficulty: medium, !from: https://leetcode.com/problems/course-schedule, https://neetcode.io/problems/course-schedule
 
 '''Problem:
 There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1.
@@ -40,6 +40,7 @@ class Solution:
         in_degrees = [0] * numCourses
         # create a graph to store the courses that depend on each course
         graph = [[] for _ in range(numCourses)]
+
         # calculate the in-degrees of each course and store the
         # courses that depend on each in the graph
         for course, prereq in prerequisites:
